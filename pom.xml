@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>pers.guzx</groupId>
+    <artifactId>spring-may</artifactId>
+    <version>0.0.1</version>
+    <packaging>pom</packaging>
+
+    <name>spring-may</name>
+    <description>It was his dream</description>
+
+    <modules>
+        <!--        公共配置-->
+        <module>common</module>
+        <!--        注册中心-->
+        <module>eureka</module>
+        <!--        配置中心-->
+        <!--        spring config-->
+        <module>config</module>
+        <!--        apollo-->
+        <!--        <module>apollo</module>-->
+        <!--        网关-->
+        <module>gateway</module>
+        <!--        认证授权中心-->
+        <module>auth</module>
+        <!--        自动任务-->
+        <module>job</module>
+        <!--        监控-->
+        <module>monitor</module>
+        <!--        后台管理-->
+        <!--        <module>admin</module>-->
+        <!--        业务-->
+        <!--        <module>business</module>-->
+        <!--        示例-->
+        <module>demo</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <spring-boot-maven-plugin.version>2.6.7</spring-boot-maven-plugin.version>
+        <spring-boot-dependencies.version>2.6.7</spring-boot-dependencies.version>
+        <spring-cloud-dependencies.version>2021.0.2</spring-cloud-dependencies.version>
+        <may-version>0.1</may-version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- 自定义 starter -->
+            <dependency>
+                <groupId>pers.guzx</groupId>
+                <artifactId>demo</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-parent</artifactId>
+                    <version>${spring-boot-maven-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>aliyun-repos</id>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+</project>
