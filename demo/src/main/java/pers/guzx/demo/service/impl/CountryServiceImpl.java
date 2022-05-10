@@ -9,5 +9,5 @@ import org.springframework.stereotype.Service;
  * @describe
  */
 @Service
-public class DemoServiceImpl {
+public class CountryServiceImpl {
 }

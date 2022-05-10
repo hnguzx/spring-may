@@ -1,4 +1,4 @@
-package pers.guzx.demo.service;
+package pers.guzx.common.mapper;
 
 /**
  * @author Guzx
@@ -6,5 +6,5 @@ package pers.guzx.demo.service;
  * @date 2021/5/15 17:47
  * @describe
  */
-public class DemoService {
+public interface BaseMapper {
 }

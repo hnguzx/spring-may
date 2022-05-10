@@ -1,4 +1,4 @@
-package pers.guzx.demo.entity;
+package pers.guzx.demo.service;
 
 /**
  * @author Guzx
@@ -6,5 +6,5 @@ package pers.guzx.demo.entity;
  * @date 2021/5/15 17:47
  * @describe
  */
-public class Demo {
+public class CountryService {
 }
