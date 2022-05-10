@@ -1,9 +1,9 @@
-base:
-  ip: 127.0.0.1
-  mysql:
-    url: jdbc:mysql://${base.ip}:3306/demo?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
-    username: guzx
-    password: 970712
+#base:
+#  ip: 127.0.0.1
+#  mysql:
+#    url: jdbc:mysql://${base.ip}:3306/demo?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+#    username: guzx
+#    password: 970712
 
 #management:
 #  trace:
