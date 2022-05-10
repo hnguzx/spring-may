@@ -55,16 +55,4 @@ public class DemoTest {
         // Verify the results
         assertEquals(expectedResult, result);
     }
-
-    @Test
-    void testTestCommonResp3() {
-        // Setup
-        final Result<String> expectedResult = new Result<>("Data", 0, "message");
-
-        // Run the test
-        final Result<String> result = demo.testCommonResp3();
-
-        // Verify the results
-        assertEquals(expectedResult, result);
-    }
 }

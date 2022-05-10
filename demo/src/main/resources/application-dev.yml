@@ -5,14 +5,14 @@ base:
     username: guzx
     password: 970712
 
-management:
-  trace:
-    http:
-      enabled: true
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-  endpoint:
-    health:
-      show-details: always
+#management:
+#  trace:
+#    http:
+#      enabled: true
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
+#  endpoint:
+#    health:
+#      show-details: always
