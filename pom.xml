@@ -44,9 +44,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <spring-boot-maven-plugin.version>2.6.7</spring-boot-maven-plugin.version>
-        <spring-boot-dependencies.version>2.6.7</spring-boot-dependencies.version>
-        <spring-cloud-dependencies.version>2021.0.2</spring-cloud-dependencies.version>
+        <spring-boot-maven-plugin.version>2.5.2</spring-boot-maven-plugin.version>
+        <spring-boot-dependencies.version>2.5.2</spring-boot-dependencies.version>
+        <spring-cloud-dependencies.version>2020.0.5</spring-cloud-dependencies.version>
         <may-version>0.1</may-version>
     </properties>
 
