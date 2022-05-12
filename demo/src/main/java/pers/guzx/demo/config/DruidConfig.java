@@ -35,24 +35,40 @@ public class DruidConfig {
         return new DataSourceTransactionManager(druid());
     }
 
-    @Bean
-    public WallConfig wallConfig() {
-        WallConfig wallConfig = new WallConfig();
-        wallConfig.setMultiStatementAllow(true);
-        wallConfig.setNoneBaseStatementAllow(true);
-        wallConfig.setStrictSyntaxCheck(true);
-        return wallConfig;
-    }
-
+    /**
+     * 数据库防火墙配置
+     * @return
+     */
     @Bean
     public WallFilter wallFilter() {
         WallFilter wallFilter = new WallFilter();
-        wallFilter.setConfig(wallConfig());
+
+        WallConfig config = new WallConfig();
+        // 不允许select *
+        config.setSelectAllColumnAllow(false);
+        // 一次性执行多个语句
+        config.setMultiStatementAllow(true);
+        // 只允许执行基本语句
+        config.setNoneBaseStatementAllow(false);
+        // 严格检查语法
+        config.setStrictSyntaxCheck(true);
+
+        // 表结构是否允许修改
+        config.setTruncateAllow(false);
+        config.setCreateTableAllow(false);
+        config.setAlterTableAllow(false);
+        config.setDropTableAllow(false);
+        // 不允许切库与查看数据库表结构
+        config.setUseAllow(false);
+        config.setDescribeAllow(false);
+        config.setShowAllow(false);
+
+        wallFilter.setConfig(config);
         return wallFilter;
     }
 
     /**
-     * 监控统计
+     * 监控控制台配置
      * @return
      */
     @Bean
@@ -63,22 +79,40 @@ public class DruidConfig {
         // 控制台登录用户
         initParams.put("loginUsername", "admin");
         initParams.put("loginPassword", "123456");
+
         //默认就是允许所有访问
         initParams.put("allow", "");
-//        initParams.put("deny", "192.168.15.21");
+        // deny比allow优先级更高
+        initParams.put("deny", "192.168.3.217,localhost");
         // 禁止页面重置
-        initParams.put("resetEnable", "false");
+        initParams.put("resetEnable", "true");
         bean.setInitParameters(initParams);
         return bean;
     }
 
+    /**
+     * web-jdbc的监控配置
+     * "profileEnable";
+     * "sessionStatEnable";
+     * "sessionStatMaxCount";
+     * "exclusions";
+     * "principalSessionName";
+     * "principalCookieName";
+     * "realIpHeader";
+     * @return
+     */
     @Bean
     public FilterRegistrationBean webStatFilter() {
         FilterRegistrationBean bean = new FilterRegistrationBean();
         bean.setFilter(new WebStatFilter());
         Map<String, String> initParams = new HashMap<>();
+        // 排除请求
         initParams.put("exclusions", "*.js,*.css,/druid/*");
+        initParams.put("profileEnable","true");
+        initParams.put("sessionStatEnable","true");
+        initParams.put("sessionStatMaxCount","1000");
         bean.setInitParameters(initParams);
+        // 拦截所有请求
         bean.setUrlPatterns(Arrays.asList("/*"));
         return bean;
     }

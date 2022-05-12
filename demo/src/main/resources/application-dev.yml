@@ -23,22 +23,3 @@ spring:
       test-on-return: false
       test-while-idle: true
       filters: stat,wall,slf4j
-#      stat-view-servlet:
-#        login-username: admin
-#        login-password: 123456
-#        allow: *
-#        deny: *
-#        enabled: true
-#        reset-enable: false
-#        url-pattern: *
-#      web-stat-filter:
-#        enabled: true
-#        profile-enable: true
-#      filter:
-#        wall:
-#          config:
-#            multi-statement-allow: true
-#            delete-where-none-check: true
-#            strict-syntax-check: true
-#        slf4j:
-#          enabled: true
