@@ -2,7 +2,6 @@ package pers.guzx.demo.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pers.guzx.common.model.Code;
 import pers.guzx.common.model.Result;
 
 /**

@@ -40,8 +40,19 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
-        <!-- swagger -->
+        <!--        configuration-->
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
+        <!--        devtools-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
+
+        <!-- swagger -->
+        <!--<dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
             <version>${swagger.version}</version>
@@ -70,7 +81,7 @@
             <groupId>com.didispace</groupId>
             <artifactId>swagger-butler-core</artifactId>
             <version>${swagger.butler.version}</version>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
     <dependencyManagement>

@@ -2,8 +2,10 @@ package pers.guzx.demo.controller;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mybatis.spring.boot.test.autoconfigure.AutoConfigureMybatis;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import pers.guzx.common.model.Result;
 
@@ -15,8 +17,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @date 2021/5/15 17:47
  * @describe
  */
+@ActiveProfiles("dev")
+@AutoConfigureMybatis
 @ExtendWith(SpringExtension.class)
-@WebMvcTest
+@WebMvcTest(Demo.class)
 public class DemoTest {
 
     @Autowired

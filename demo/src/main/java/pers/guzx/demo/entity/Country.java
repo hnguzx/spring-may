@@ -11,6 +11,7 @@ import lombok.Data;
 @Data
 public class Country {
     private Integer id;
+    private Integer code;
     private String name;
     private String englishName;
     private String island;

@@ -1,11 +1,14 @@
 package pers.guzx.demo.service;
 
 import org.junit.jupiter.api.Test;
+import org.mybatis.spring.boot.test.autoconfigure.AutoConfigureMybatis;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import pers.guzx.demo.entity.Country;
-//import pers.guzx.demo.mapper.CountryMapper;
+import pers.guzx.demo.mapper.CountryMapper;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,15 +19,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @date 2021/5/15 17:47
  * @describe
  */
+@ActiveProfiles("dev")
 @SpringBootTest
 public class CountryTest {
 
-//    @Autowired
-//    private CountryMapper countryMapper;
+    @Resource
+    private CountryMapper countryMapper;
 
-//    @Test
-//    public void testSelect(){
-//        List<Country> countries = countryMapper.selectList(null);
-//        assertEquals(1,countries.size());
-//    }
+    @Test
+    public void testSelect(){
+        List<Country> countries = countryMapper.selectList(null);
+        assertEquals(1,countries.size());
+    }
 }

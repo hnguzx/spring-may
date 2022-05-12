@@ -8,6 +8,7 @@ create table if not exists country(
     grown_time varchar(10));
 
 alter table country auto_increment = 1000;
+alter table country add code varchar(10) not null comment '国家代码';
 
 insert
 into
