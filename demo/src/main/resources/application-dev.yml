@@ -8,7 +8,6 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
-      driver-class-name: com.mysql.cj.jdbc.Driver
       username: ${base.mysql.username}
       password: ${base.mysql.password}
       url: ${base.mysql.url}
