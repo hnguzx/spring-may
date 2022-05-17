@@ -5,6 +5,9 @@ base:
     username: ENC(guzx)
     password: ENC(970712)
 spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:

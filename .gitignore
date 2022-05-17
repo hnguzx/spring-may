@@ -196,3 +196,10 @@ javadoc/
 
 # lock file, a part of Oracle Credential Store Framework
 cwallet.sso.lck
+/common/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+/common/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+/common/target/maven-archiver/pom.properties
+/demo/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+/demo/target/demo-0.0.1-SNAPSHOT.jar.original
+/demo/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+/demo/target/maven-archiver/pom.properties
