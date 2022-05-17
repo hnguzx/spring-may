@@ -2,8 +2,8 @@ base:
   ip: 127.0.0.1
   mysql:
     url: jdbc:mysql://${base.ip}:3306/demo?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
-    username: guzx
-    password: 970712
+    username: ENC(guzx)
+    password: ENC(970712)
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource

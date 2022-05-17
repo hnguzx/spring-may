@@ -13,6 +13,15 @@ spring:
     username: ${base.mysql.username}
     password: ${base.mysql.password}
     url: ${base.mysql.url}
+jasypt:
+  encryptor:
+#    自定义加密方法
+    bean: stringEncryptorUtil
+#    启动手动添加password
+#    java -jar -Djasypt.encryptor.password=guzx970712 XXX.jar
+#    password: guzx970712
+#    algorithm: PBEWithMD5AndDES
+#    iv-generator-classname: org.jasypt.iv.NoIvGenerator
 
 
 

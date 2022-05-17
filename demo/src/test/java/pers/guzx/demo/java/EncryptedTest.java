@@ -1,12 +1,16 @@
 package pers.guzx.demo.java;
 
 import lombok.extern.slf4j.Slf4j;
+import org.jasypt.encryption.StringEncryptor;
 import org.jasypt.util.text.BasicTextEncryptor;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import pers.guzx.common.util.StringEncryptorUtil;
+
+import javax.annotation.Resource;
 
 /**
  * @author Guzx
@@ -34,6 +38,17 @@ public class EncryptedTest {
         String encryptUsername = encryptor.encrypt(username);
         String encryptPassword = encryptor.encrypt(password);
         log.info("username:{}\npassword:{}",encryptUsername,encryptPassword);
+    }
 
+    @Resource
+    private StringEncryptorUtil stringEncryptor;
+
+    @Test
+    void testEncryptor(){
+        String name = "guzx";
+        String encrypt = stringEncryptor.encrypt(name);
+        log.info(encrypt);
+        String decrypt = stringEncryptor.decrypt(encrypt);
+        log.info(decrypt);
     }
 }
