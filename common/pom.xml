@@ -12,7 +12,7 @@
     <artifactId>common</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>common</name>
-    <description>Demo project for Spring Boot</description>
+    <description>公共依赖</description>
     <properties>
         <java.version>11</java.version>
         <swagger.version>3.0.0</swagger.version>

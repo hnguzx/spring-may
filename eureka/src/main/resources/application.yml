@@ -1,0 +1,19 @@
+server:
+  port: 8060
+spring:
+  application:
+    name: registry-server
+
+eureka:
+  instance:
+    hostname: ${spring.application.name}
+    lease-expiration-duration-in-seconds: 90
+  server:
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 6000
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${spring.cloud.client.ip-address}:${server.port}/eureka/
+

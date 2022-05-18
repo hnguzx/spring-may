@@ -29,6 +29,18 @@ jasypt:
 #    algorithm: PBEWithMD5AndDES
 #    iv-generator-classname: org.jasypt.iv.NoIvGenerator
 
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: http://127.0.0.1:8060/eureka/
+  instance:
+    instance-id: ${spring.application.name}
+    prefer-ip-address: true
+    status-page-url-path: http://${spring.cloud.client.ip-address}:${management.server.port}/manage/
+    lease-renewal-interval-in-seconds: 30
+
 
 
 
