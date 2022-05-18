@@ -25,3 +25,24 @@ spring:
       test-on-return: false
       test-while-idle: true
       filters: stat,wall,slf4j
+management:
+  server:
+    port: 8081
+  trace:
+    http:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: beans
+      path-mapping:
+        health: healthcheck
+      base-path: /manage
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+    logfile:
+      enabled: true

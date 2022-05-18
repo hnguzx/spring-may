@@ -13,6 +13,12 @@ spring:
     username: ${base.mysql.username}
     password: ${base.mysql.password}
     url: ${base.mysql.url}
+  zipkin:
+    base-url: http://127.0.0.1:9411
+    discovery-client-enabled: false
+  sleuth:
+    sampler:
+      probability: 1
 jasypt:
   encryptor:
 #    自定义加密方法
