@@ -1,7 +1,5 @@
 server:
   port: 8080
-  servlet:
-    context-path: /demo
 
 spring:
   application:
@@ -39,6 +37,7 @@ eureka:
     instance-id: ${spring.application.name}
     prefer-ip-address: true
     status-page-url-path: http://${spring.cloud.client.ip-address}:${server.port}/manage/
+    # 心跳间隔
     lease-renewal-interval-in-seconds: 30
 
 

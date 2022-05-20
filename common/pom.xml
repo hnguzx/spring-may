@@ -15,7 +15,7 @@
     <description>公共依赖</description>
     <properties>
         <java.version>11</java.version>
-        <swagger.version>2.10.5</swagger.version>
+<!--        <swagger.version>2.9.2</swagger.version>-->
         <mybatis.version>2.2.2</mybatis.version>
 
         <spring-boot-maven-plugin.version>2.6.7</spring-boot-maven-plugin.version>
@@ -55,7 +55,7 @@
             <version>3.0.4</version>
         </dependency>
         <!-- swagger -->
-        <dependency>
+        <!--<dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>${swagger.version}</version>
@@ -64,7 +64,7 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
             <version>${swagger.version}</version>
-        </dependency>
+        </dependency>-->
 
         <!--        openfeign-->
         <dependency>

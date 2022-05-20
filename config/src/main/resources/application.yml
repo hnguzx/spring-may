@@ -1,0 +1,16 @@
+server:
+  port: 8070
+spring:
+  application:
+    name: config-server
+management:
+  endpoints:
+    web:
+      base-path: "/admin"
+      exposure:
+        include: "*"
+  endpoint:
+    env:
+      post:
+        enabled: true
+

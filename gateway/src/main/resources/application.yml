@@ -1,0 +1,32 @@
+server:
+  port: 8065
+
+
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: http://127.0.0.1:8060/eureka/
+  instance:
+    instance-id: ${spring.application.name}
+    prefer-ip-address: true
+    status-page-url-path: http://${spring.cloud.client.ip-address}:${server.port}/manage/
+    lease-renewal-interval-in-seconds: 30
+spring:
+  application:
+    name: gateway-server
+  profiles:
+    active: dev
+  zipkin:
+    base-url: http://127.0.0.1:9411
+    discovery-client-enabled: false
+  sleuth:
+    sampler:
+      probability: 1
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          lower-case-service-id: true
+          enabled: true

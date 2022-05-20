@@ -12,9 +12,12 @@
     <artifactId>config</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>config</name>
-    <description>Demo project for Spring Boot</description>
+    <description>服务配置中心</description>
     <properties>
         <java.version>11</java.version>
+        <spring-boot-maven-plugin.version>2.6.7</spring-boot-maven-plugin.version>
+        <spring-boot-dependencies.version>2.6.7</spring-boot-dependencies.version>
+        <spring-cloud-dependencies.version>2021.0.2</spring-cloud-dependencies.version>
     </properties>
     <dependencies>
         <dependency>
@@ -27,7 +30,45 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!--        web-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!--        config-server-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-config-server</artifactId>
+        </dependency>
+        <!--        monitor-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-config-monitor</artifactId>
+        </dependency>
+
+
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>

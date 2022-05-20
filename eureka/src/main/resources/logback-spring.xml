@@ -4,7 +4,7 @@
     <include resource="org/springframework/boot/logging/logback/defaults.xml" />
     <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
     <!-- 项目名称 -->
-    <property name="PROJECT_NAME" value="demo-server" />
+    <property name="PROJECT_NAME" value="registry-server" />
     <contextName>${PROJECT_NAME}</contextName>
 
 
@@ -82,8 +82,6 @@
         </encoder>
     </appender>
 
-    <logger name="pers.guzx.demo.mapper" level="debug" additivity="true" />
-
     <!--TRACE < DEBUG < INFO < WARN < ERROR < FATAL-->
     <!-- 开发环境下的日志配置 -->
     <springProfile name="dev">
@@ -93,10 +91,11 @@
     </springProfile>
 
     <!-- 生产环境下的日志配置 -->
-    <springProfile name="prod">
+    <!--<springProfile name="prod">
         <root level="INFO">
             <appender-ref ref="SYSTEM_FILE_ERROR" />
             <appender-ref ref="SYSTEM_FILE_INFO" />
         </root>
-    </springProfile>
+    </springProfile>-->
+
 </configuration>

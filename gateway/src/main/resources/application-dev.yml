@@ -1,0 +1,19 @@
+management:
+  trace:
+    http:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: beans
+      path-mapping:
+        health: healthcheck
+      base-path: /manage
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+    logfile:
+      enabled: true
