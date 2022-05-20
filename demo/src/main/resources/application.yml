@@ -5,7 +5,7 @@ server:
 
 spring:
   application:
-    name: demo
+    name: demo-server
   profiles:
     active: dev
   datasource:
@@ -38,7 +38,7 @@ eureka:
   instance:
     instance-id: ${spring.application.name}
     prefer-ip-address: true
-    status-page-url-path: http://${spring.cloud.client.ip-address}:${management.server.port}/manage/
+    status-page-url-path: http://${spring.cloud.client.ip-address}:${server.port}/manage/
     lease-renewal-interval-in-seconds: 30
 
 

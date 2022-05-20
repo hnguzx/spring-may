@@ -31,13 +31,12 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
+        <!--        common-->
         <dependency>
             <groupId>pers.guzx</groupId>
             <artifactId>common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
         <!--        mysql-->
         <dependency>
             <groupId>mysql</groupId>

@@ -15,10 +15,7 @@
     <description>公共依赖</description>
     <properties>
         <java.version>11</java.version>
-        <swagger.version>3.0.0</swagger.version>
-        <swagger.ui.version>1.9.6</swagger.ui.version>
-        <swagger.mg.ui.version>2.0.2</swagger.mg.ui.version>
-        <swagger.butler.version>2.0.0</swagger.butler.version>
+        <swagger.version>2.10.5</swagger.version>
         <mybatis.version>2.2.2</mybatis.version>
 
         <spring-boot-maven-plugin.version>2.6.7</spring-boot-maven-plugin.version>
@@ -60,14 +57,19 @@
         <!-- swagger -->
         <dependency>
             <groupId>io.springfox</groupId>
-            <artifactId>springfox-boot-starter</artifactId>
-            <version>3.0.0</version>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${swagger.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+
         <!--        openfeign-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
-            <version>3.1.2</version>
         </dependency>
         <!--        zipkin-->
         <dependency>

@@ -5,9 +5,9 @@ base:
     username: ENC(guzx)
     password: ENC(970712)
 spring:
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
+#  mvc:
+#    pathmatch:
+#      matching-strategy: ant_path_matcher
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
@@ -26,8 +26,8 @@ spring:
       test-while-idle: true
       filters: stat,wall,slf4j
 management:
-  server:
-    port: 8081
+#  server:
+#    port: 8081
   trace:
     http:
       enabled: true

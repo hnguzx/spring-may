@@ -30,7 +30,12 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
+        <!--        common-->
+        <dependency>
+            <groupId>pers.guzx</groupId>
+            <artifactId>common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
         <!--        eureka-server-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
