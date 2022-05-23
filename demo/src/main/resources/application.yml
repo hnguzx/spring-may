@@ -17,6 +17,11 @@ spring:
   sleuth:
     sampler:
       probability: 1
+#  rabbitmq:
+#    host: localhost
+#    port: 5672
+#    username: guest
+#    password: guest
 jasypt:
   encryptor:
 #    自定义加密方法
@@ -26,23 +31,3 @@ jasypt:
 #    password: guzx970712
 #    algorithm: PBEWithMD5AndDES
 #    iv-generator-classname: org.jasypt.iv.NoIvGenerator
-
-eureka:
-  client:
-    healthcheck:
-      enabled: true
-    service-url:
-      defaultZone: http://127.0.0.1:8060/eureka/
-  instance:
-    instance-id: ${spring.application.name}
-    prefer-ip-address: true
-    status-page-url-path: http://${spring.cloud.client.ip-address}:${server.port}/manage/
-    # 心跳间隔
-    lease-renewal-interval-in-seconds: 30
-
-
-
-
-
-
-

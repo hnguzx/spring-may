@@ -1,0 +1,20 @@
+spring:
+  cloud:
+    config:
+      label: main
+      name: application
+      profile: dev
+      uri: http://localhost:8070
+
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: http://127.0.0.1:8060/eureka/
+  instance:
+    instance-id: ${spring.application.name}
+    prefer-ip-address: true
+    status-page-url-path: http://${spring.cloud.client.ip-address}:${server.port}/manage/
+    # 心跳间隔
+    lease-renewal-interval-in-seconds: 30

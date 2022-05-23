@@ -3,14 +3,49 @@ server:
 spring:
   application:
     name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          #          仓库地址
+          uri: https://github.com/hnguzx/config.git
+          #          仓库内文件地址
+          search-paths:
+            - pers/guzx/spring-may/demo
+          default-label: main
+          #          private仓库拉取有问题，暂未解决
+          #          username: hnguzx
+          #          password: 19970712Gzx
+          basedir: target/config
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: http://127.0.0.1:8060/eureka/
+  instance:
+    instance-id: ${spring.application.name}
+    prefer-ip-address: true
+    status-page-url-path: http://${spring.cloud.client.ip-address}:${server.port}/manage/
+    #      心跳间隔
+    lease-renewal-interval-in-seconds: 30
+
 management:
+  trace:
+    http:
+      enabled: true
   endpoints:
     web:
-      base-path: "/admin"
       exposure:
         include: "*"
+        exclude: beans
+      path-mapping:
+        health: healthcheck
+      base-path: /manage
   endpoint:
-    env:
-      post:
-        enabled: true
-
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+    logfile:
+      enabled: true

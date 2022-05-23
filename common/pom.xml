@@ -15,7 +15,7 @@
     <description>公共依赖</description>
     <properties>
         <java.version>11</java.version>
-<!--        <swagger.version>2.9.2</swagger.version>-->
+        <!--        <swagger.version>2.9.2</swagger.version>-->
         <mybatis.version>2.2.2</mybatis.version>
 
         <spring-boot-maven-plugin.version>2.6.7</spring-boot-maven-plugin.version>
@@ -66,17 +66,23 @@
             <version>${swagger.version}</version>
         </dependency>-->
 
-        <!--        openfeign-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
         <!--        zipkin-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-zipkin</artifactId>
             <version>2.2.8.RELEASE</version>
         </dependency>
+        <!--        bootstrap-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+        <!--        openfeign-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+
 
     </dependencies>
 
