@@ -1,7 +1,6 @@
 server:
   port: 8065
 
-
 eureka:
   client:
     healthcheck:
@@ -13,6 +12,7 @@ eureka:
     prefer-ip-address: true
     status-page-url-path: http://${spring.cloud.client.ip-address}:${server.port}/manage/
     lease-renewal-interval-in-seconds: 30
+
 spring:
   application:
     name: gateway-server
@@ -30,3 +30,23 @@ spring:
         locator:
           lower-case-service-id: true
           enabled: true
+
+management:
+  trace:
+    http:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: beans
+      path-mapping:
+        health: healthcheck
+      base-path: /manage
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+    logfile:
+      enabled: true

@@ -2,11 +2,13 @@ package pers.guzx.demo.service.impl;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pers.guzx.demo.entity.Country;
+import pers.guzx.demo.entity.po.Country;
+import pers.guzx.demo.entity.vo.CountryVO;
 import pers.guzx.demo.mapper.CountryMapper;
 import pers.guzx.demo.service.CountryService;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,14 +25,20 @@ public class CountryServiceImpl implements CountryService {
     private CountryMapper countryMapper;
 
     @Override
-    public Country getCountry(Integer id) {
+    public CountryVO getCountry(Integer id) {
         Country country = countryMapper.selectById(id);
-        return country;
+        CountryVO countryVO = country.toCountryVO();
+        return countryVO;
     }
 
     @Override
-    public List<Country> getCountries() {
+    public List<CountryVO> getCountries() {
         List<Country> countries = countryMapper.selectList(null);
-        return countries;
+        List<CountryVO> countryVOS = new ArrayList<>();
+        for (Country country: countries){
+            CountryVO countryVO = country.toCountryVO();
+            countryVOS.add(countryVO);
+        }
+        return countryVOS;
     }
 }

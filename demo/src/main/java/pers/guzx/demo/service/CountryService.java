@@ -1,6 +1,6 @@
 package pers.guzx.demo.service;
 
-import pers.guzx.demo.entity.Country;
+import pers.guzx.demo.entity.vo.CountryVO;
 
 import java.util.List;
 
@@ -11,6 +11,6 @@ import java.util.List;
  * @describe
  */
 public interface CountryService {
-    Country getCountry(Integer id);
-    List<Country> getCountries();
+    CountryVO getCountry(Integer id);
+    List<CountryVO> getCountries();
 }

@@ -1,11 +1,9 @@
 package pers.guzx.demo.service;
 
 import org.junit.jupiter.api.Test;
-import org.mybatis.spring.boot.test.autoconfigure.AutoConfigureMybatis;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import pers.guzx.demo.entity.Country;
+import pers.guzx.demo.entity.po.Country;
 import pers.guzx.demo.mapper.CountryMapper;
 
 import javax.annotation.Resource;

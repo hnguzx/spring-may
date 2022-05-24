@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pers.guzx.common.model.Result;
+import pers.guzx.common.entity.dto.Result;
 import pers.guzx.demo.config.ConfigProperties;
 
 import javax.annotation.Resource;
@@ -34,9 +34,9 @@ public class Demo {
 
     @GetMapping("/commResp1")
     public Result<String> testCommonResp1() {
-        String name = configProperties.getName();
-        log.info("配置文件中属性为：{}", name);
-        return Result.succeed(name);
+        String address = configProperties.getTimeout();
+        log.info("配置文件中属性为：{}", address);
+        return Result.succeed(address);
     }
 
     @GetMapping("/commResp2")

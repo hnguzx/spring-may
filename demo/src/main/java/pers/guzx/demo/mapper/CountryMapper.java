@@ -1,7 +1,7 @@
 package pers.guzx.demo.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import pers.guzx.demo.entity.Country;
+import pers.guzx.demo.entity.po.Country;
 
 /**
  * @author Guzx

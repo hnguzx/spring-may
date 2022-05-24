@@ -1,9 +1,8 @@
 package pers.guzx.demo.config;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,7 +14,12 @@ import org.springframework.stereotype.Component;
 @Getter
 @Setter
 @Component
-@ConfigurationProperties(prefix = "base")
 public class ConfigProperties {
-    private String name;
+
+//    @Value("${base.address}")
+//    private String address;
+
+    @Value("${timeout}")
+    private String timeout;
+
 }

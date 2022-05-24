@@ -19,6 +19,7 @@
         <spring-boot-dependencies.version>2.6.7</spring-boot-dependencies.version>
         <spring-cloud-dependencies.version>2021.0.2</spring-cloud-dependencies.version>
         <mybatis.version>2.2.2</mybatis.version>
+        <apollo.version>2.0.0</apollo.version>
     </properties>
     <dependencies>
         <dependency>
@@ -78,17 +79,21 @@
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
         <!--        spring cloud config-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-config</artifactId>
-        </dependency>
-        <!--        bus-->
         <!--<dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+            <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>-->
-
-
+        <!--        apollo-->
+        <dependency>
+            <groupId>com.ctrip.framework.apollo</groupId>
+            <artifactId>apollo-client</artifactId>
+            <version>${apollo.version}</version>
+        </dependency>
+        <!--<dependency>
+            <groupId>com.ctrip.framework.apollo</groupId>
+            <artifactId>apollo-client-config-data</artifactId>
+            <version>${apollo.version}</version>
+        </dependency>-->
     </dependencies>
 
     <dependencyManagement>

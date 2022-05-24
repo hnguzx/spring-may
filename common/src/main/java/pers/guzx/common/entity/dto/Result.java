@@ -1,8 +1,9 @@
-package pers.guzx.common.model;
+package pers.guzx.common.entity.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pers.guzx.common.enums.Code;
 
 import java.io.Serializable;
 
