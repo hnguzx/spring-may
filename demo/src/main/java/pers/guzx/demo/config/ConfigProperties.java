@@ -19,7 +19,7 @@ public class ConfigProperties {
 //    @Value("${base.address}")
 //    private String address;
 
-    @Value("${timeout}")
+    @Value("${base.timeout}")
     private String timeout;
 
 }
