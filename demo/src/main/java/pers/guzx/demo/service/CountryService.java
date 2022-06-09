@@ -13,4 +13,5 @@ import java.util.List;
 public interface CountryService {
     CountryVO getCountry(Integer id);
     List<CountryVO> getCountries();
+    int addCountry(CountryVO countryVO);
 }

@@ -1,6 +1,14 @@
 package pers.guzx.demo.entity.vo;
 
 import lombok.Data;
+import org.springframework.beans.BeanUtils;
+import pers.guzx.demo.entity.po.Country;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Past;
+import java.util.Date;
 
 /**
  * @author Guzx
@@ -10,11 +18,24 @@ import lombok.Data;
  */
 @Data
 public class CountryVO {
+    @Max(value = 99999,message = "out of maximum range")
     private Integer code;
+    @NotBlank(message = "can not be empty")
     private String name;
+    @NotBlank(message = "can not be empty")
     private String englishName;
+    @NotBlank(message = "can not be empty")
     private String island;
+    @NotBlank(message = "can not be empty")
     private String language;
+    @Min(value = 1)
     private Integer population;
-    private String grownTime;
+    @Past
+    private Date grownTime;
+
+    public Country toCountry() {
+        Country country = new Country();
+        BeanUtils.copyProperties(this,country);
+        return country;
+    }
 }

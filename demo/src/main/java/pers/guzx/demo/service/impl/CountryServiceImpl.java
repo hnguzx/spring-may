@@ -41,4 +41,11 @@ public class CountryServiceImpl implements CountryService {
         }
         return countryVOS;
     }
+
+    @Override
+    public int addCountry(CountryVO countryVO) {
+        Country country = countryVO.toCountry();
+        int insert = countryMapper.insert(country);
+        return insert;
+    }
 }

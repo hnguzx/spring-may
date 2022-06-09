@@ -1,11 +1,14 @@
 package pers.guzx.demo.entity.po;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
 import pers.guzx.demo.entity.vo.CountryVO;
+
+import java.util.Date;
 
 /**
  * @author Guzx
@@ -16,8 +19,8 @@ import pers.guzx.demo.entity.vo.CountryVO;
 @TableName("country")
 @Data
 public class Country {
-    @TableId(value = "id")
-    private Integer id;
+    @TableId(value = "id",type = IdType.ASSIGN_ID)
+    private Long id;
     @TableField(value = "code")
     private Integer code;
     private String name;
@@ -25,7 +28,7 @@ public class Country {
     private String island;
     private String language;
     private Integer population;
-    private String grownTime;
+    private Date grownTime;
 
     public CountryVO toCountryVO() {
         CountryVO countryVO = new CountryVO();
