@@ -1,17 +1,17 @@
 package pers.guzx.demo.controller;
 
+import org.apache.ibatis.annotations.Update;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pers.guzx.common.annotation.SysLog;
 import pers.guzx.common.entity.dto.Result;
-import pers.guzx.common.enums.Code;
-import pers.guzx.common.exception.BaseException;
 import pers.guzx.demo.entity.vo.CountryVO;
+import pers.guzx.demo.entity.vo.PageResult;
 import pers.guzx.demo.service.CountryService;
 
-import javax.annotation.Resource;
 import javax.validation.Valid;
-import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 
 /**
  * @author Guzx
@@ -23,25 +23,43 @@ import java.util.Map;
 @RequestMapping("/jdbc")
 public class JDBC {
 
-    @Resource
+    @Autowired
     private CountryService countryService;
 
     @SysLog
     @GetMapping("/getSingle/{countryId}")
-    public CountryVO getCountry(@PathVariable Integer countryId) {
-        CountryVO country = countryService.getCountry(countryId);
-        return country;
+    public Result<CountryVO> getCountry(@PathVariable Long countryId) {
+        Optional<CountryVO> country = countryService.getCountryById(countryId);
+        if (country.isPresent()) {
+            return Result.succeed(country.get());
+        }
+        return Result.succeed();
     }
 
-    @GetMapping("/getMultiple")
-    public List<CountryVO> getCountryList(@RequestParam Map<String,String> para){
-        List<CountryVO> countries = countryService.getCountries();
-        return countries;
+    @GetMapping("/getMultiple/{current}/{size}")
+    public Result<PageResult<CountryVO>> getCountryList(@RequestBody CountryVO countryVO,@PathVariable Long current, @PathVariable Long size) {
+        PageResult<CountryVO> countryByCountry = countryService.getCountryByCountry(countryVO, current, size);
+        return Result.succeed(countryByCountry);
     }
 
-    @PostMapping("/addCountry")
-    public Result<Integer> addCountry(@RequestBody @Valid CountryVO countryVO){
-        int i = countryService.addCountry(countryVO);
-        return Result.succeed(i);
+    @PutMapping("/addCountry")
+    public Result<CountryVO> addCountry(@RequestBody @Valid CountryVO countryVO) {
+        boolean result = countryService.addCountry(countryVO);
+        if (result) {
+            return Result.succeed(countryVO);
+        }
+        return Result.failed();
+    }
+
+    @DeleteMapping("/deleteCountry")
+    public Result<Boolean> deleteCountry(@RequestBody CountryVO countryVO) {
+        boolean result = countryService.deleteCountry(countryVO);
+        return Result.succeed(result);
+    }
+
+    @PostMapping("/updateCountry")
+    public Result<CountryVO> updateCountry(@RequestBody @Validated(Update.class) CountryVO countryVO) {
+        boolean result = countryService.updateCountry(countryVO);
+        return result ? Result.succeed() : Result.failed();
     }
 }

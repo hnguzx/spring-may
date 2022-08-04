@@ -19,8 +19,6 @@ import javax.annotation.Resource;
  * @describe
  */
 @Slf4j
-@ExtendWith(SpringExtension.class)
-@SpringBootTest
 public class EncryptedTest {
 
     @Test
@@ -40,11 +38,9 @@ public class EncryptedTest {
         log.info("username:{}\npassword:{}",encryptUsername,encryptPassword);
     }
 
-    @Resource
-    private StringEncryptorUtil stringEncryptor;
-
     @Test
     void testEncryptor(){
+        StringEncryptorUtil stringEncryptor = new StringEncryptorUtil();
         String name = "guzx";
         String encrypt = stringEncryptor.encrypt(name);
         log.info(encrypt);

@@ -40,6 +40,17 @@ spring:
   sleuth:
     sampler:
       probability: 1
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    timeout: 10000
+    lettuce:
+      pool:
+        max-active: 20
+        max-idle: 8
+        max-wait: 10000
+        min-idle: 8
+      shutdown-timeout: 100
 
 jasypt:
   encryptor:
@@ -53,7 +64,7 @@ jasypt:
 
 eureka:
   client:
-    healthcheck:
+    health-check:
       enabled: true
     service-url:
       defaultZone: http://127.0.0.1:8060/eureka
@@ -76,7 +87,7 @@ management:
         include: "*"
         exclude: beans
       path-mapping:
-        health: healthcheck
+        health: health-check
       base-path: /manage
   endpoint:
     shutdown:
@@ -85,5 +96,4 @@ management:
       show-details: always
     logfile:
       enabled: true
-
 

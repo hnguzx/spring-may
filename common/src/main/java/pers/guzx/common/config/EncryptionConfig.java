@@ -1,6 +1,7 @@
 package pers.guzx.common.config;
 
 import org.jasypt.encryption.StringEncryptor;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import pers.guzx.common.util.StringEncryptorUtil;
@@ -12,10 +13,11 @@ import pers.guzx.common.util.StringEncryptorUtil;
  * @describe
  */
 @Configuration
+@ConditionalOnProperty(prefix = "jasypt.encryptor", value = "bean")
 public class EncryptionConfig {
 
     @Bean("jasyptStringEncryptor")
-    public StringEncryptor stringEncryptor(){
+    public StringEncryptor stringEncryptor() {
         return new StringEncryptorUtil();
     }
 }

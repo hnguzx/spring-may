@@ -18,6 +18,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class Result<T> implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     private T data = null;
     private Integer code;
     private String message;

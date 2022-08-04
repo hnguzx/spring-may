@@ -20,6 +20,7 @@ import java.util.Map;
 
 /**
  * Druid连接池基本配置
+ * @author 25446
  */
 @Configuration
 public class DruidConfig {

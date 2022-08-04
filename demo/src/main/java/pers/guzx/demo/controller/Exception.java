@@ -7,9 +7,12 @@ import pers.guzx.common.annotation.SysLog;
 import pers.guzx.common.entity.dto.Result;
 import pers.guzx.common.exception.BaseException;
 
+/**
+ * @author 25446
+ */
 @RestController
 @RequestMapping("/exception")
-public class Exception {
+public class Exception extends Throwable {
 
     @SysLog
     @GetMapping("/common")

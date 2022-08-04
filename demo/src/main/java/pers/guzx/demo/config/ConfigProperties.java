@@ -5,19 +5,15 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+
 /**
- * @author Guzx
- * @version 1.0
- * @date 2021/5/15 17:47
- * @describe
+ * @author 25446
+ * 测试读取配置中心配置
  */
 @Getter
 @Setter
 @Component
 public class ConfigProperties {
-
-//    @Value("${base.address}")
-//    private String address;
 
     @Value("${base.timeout}")
     private String timeout;

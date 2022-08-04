@@ -1,8 +1,11 @@
 package pers.guzx.demo.service;
 
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.transaction.annotation.Transactional;
 import pers.guzx.demo.entity.vo.CountryVO;
+import pers.guzx.demo.entity.vo.PageResult;
 
-import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Guzx
@@ -11,7 +14,51 @@ import java.util.List;
  * @describe
  */
 public interface CountryService {
-    CountryVO getCountry(Integer id);
-    List<CountryVO> getCountries();
-    int addCountry(CountryVO countryVO);
+    /**
+     * 新增
+     *
+     * @param countryVO
+     * @return
+     */
+    @Transactional(rollbackFor = Exception.class)
+    boolean addCountry(CountryVO countryVO);
+
+    /**
+     * 删除
+     *
+     * @param countryVO
+     * @return
+     */
+    @Transactional(rollbackFor = Exception.class)
+    boolean deleteCountry(CountryVO countryVO);
+
+    /**
+     * 修改
+     *
+     * @param countryVO
+     * @return
+     */
+    @Transactional(rollbackFor = Exception.class)
+    boolean updateCountry(CountryVO countryVO);
+
+    /**
+     * 根据主键查询单笔
+     *
+     * @param id
+     * @return
+     */
+    @Cacheable(cacheNames = "country", unless = "#result == null")
+    Optional<CountryVO> getCountryById(Long id);
+
+    /**
+     * 根据条件查询列表
+     *
+     * @param country
+     * @param current
+     * @param size
+     * @return
+     */
+    @Cacheable(cacheNames = "country")
+    PageResult<CountryVO> getCountryByCountry(CountryVO country, Long current, Long size);
+
 }
