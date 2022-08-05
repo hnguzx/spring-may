@@ -21,7 +21,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/jdbc")
-public class JDBC {
+public class JDBCController {
 
     @Autowired
     private CountryService countryService;

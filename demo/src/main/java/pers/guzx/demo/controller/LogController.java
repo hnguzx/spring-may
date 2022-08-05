@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
-public class Log {
+public class LogController {
 
     @GetMapping("/log")
     public void log(){

@@ -20,7 +20,7 @@ import javax.annotation.Resource;
 @RefreshScope
 @Slf4j
 @RestController
-public class Demo {
+public class DemoController {
 
     @Value("${spring.application.name}")
     private String applicationName;
@@ -28,9 +28,12 @@ public class Demo {
     @Resource
     private ConfigProperties configProperties;
 
+    @Value("${test.name}")
+    private String test;
+
     @GetMapping("conn")
     public String testConn() {
-        return applicationName;
+        return test;
     }
 
     @GetMapping("/successResp1")

@@ -12,7 +12,7 @@ import pers.guzx.common.exception.BaseException;
  */
 @RestController
 @RequestMapping("/exception")
-public class Exception extends Throwable {
+public class ExceptionController extends Throwable {
 
     @SysLog
     @GetMapping("/common")

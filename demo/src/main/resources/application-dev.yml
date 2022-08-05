@@ -97,3 +97,16 @@
 #    logfile:
 #      enabled: true
 #
+test:
+  name: dev
+
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 20MB
+      max-request-size: 30MB
+      file-size-threshold: 10MB
+
+file:
+  storagePath: D:\tempFile

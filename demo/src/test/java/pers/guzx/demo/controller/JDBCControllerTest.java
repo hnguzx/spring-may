@@ -27,10 +27,17 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * controller层测试，只添加@WebMvcTest注解即可直接注入MockMvc直接进行http调用，可指定特定Controller
+ * 如果系统接入了Mybatis则需要添加mybatis-spring-boot-starter-test依赖
+ * 并在Test类中添加@AutoconfigureMybatis注解
+ * @MockBean将mock对象添加到Spring上下文中
+ * get 可以在url中添加参数也可以在body中添加参数
+ */
 @Slf4j
 @AutoConfigureMybatis
-@WebMvcTest(JDBC.class)
-class JDBCTest {
+@WebMvcTest(JDBCController.class)
+class JDBCControllerTest {
 
     @Autowired
     private MockMvc mockMvc;

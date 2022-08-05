@@ -13,7 +13,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @AutoConfigureMybatis
-@WebMvcTest(Exception.class)
+@WebMvcTest(ExceptionController.class)
 class ExceptionTest {
 
     @Autowired

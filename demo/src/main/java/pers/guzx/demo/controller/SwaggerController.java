@@ -1,10 +1,6 @@
 package pers.guzx.demo.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import pers.guzx.common.entity.dto.Result;
-import pers.guzx.demo.entity.vo.CountryVO;
 import pers.guzx.demo.service.CountryService;
 
 import javax.annotation.Resource;
@@ -13,7 +9,7 @@ import javax.annotation.Resource;
  * @author 25446
  */ //@Api(tags = "测试swagger的Controller")
 @RestController
-public class Swagger {
+public class SwaggerController {
     @Resource
     private CountryService countryService;
 
