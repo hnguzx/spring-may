@@ -13,7 +13,7 @@ import org.springframework.util.StringUtils;
  */
 @Slf4j
 @Component("stringEncryptorUtil")
-public class StringEncryptorUtil implements StringEncryptor {
+public class StringEncryptorUtils implements StringEncryptor {
 
     @Override
     public String encrypt(String s) {

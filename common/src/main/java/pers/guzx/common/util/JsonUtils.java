@@ -10,7 +10,7 @@ import java.util.*;
  * @author 25446
  */
 @Slf4j
-public class JsonUtil {
+public class JsonUtils {
 
     /**
      * Object To JsonString

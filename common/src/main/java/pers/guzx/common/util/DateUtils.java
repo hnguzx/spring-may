@@ -9,7 +9,7 @@ import java.util.Date;
  * @date 2022/6/8 16:51
  * @describe 日期工具类
  */
-public class DateUtil {
+public class DateUtils {
     public static String getDateFormatString(String format) {
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat(format);

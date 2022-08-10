@@ -29,6 +29,7 @@ class LogControllerTest {
     void testLog() throws java.lang.Exception {
 
         final MockHttpServletResponse response = mockMvc.perform(get("/log")
+                        .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andDo(print())

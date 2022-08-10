@@ -3,8 +3,7 @@ package pers.guzx.demo.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pers.guzx.common.entity.dto.Result;
 import pers.guzx.common.enums.Code;
 import pers.guzx.demo.config.ConfigProperties;
@@ -44,12 +43,15 @@ public class DemoController {
     }
 
     @GetMapping("/successResp2")
-    public Result<String> successResp2() {
-        return Result.succeed("Data", "success message");
+    public Result<String> successResp2(@RequestParam(value = "name") String name, @RequestParam(value = "age") String age) {
+        String result = "name=" + name + ", age=" + age;
+        log.info("result:{}", result);
+        return Result.succeed(result, "success message");
     }
 
     @GetMapping("/errorResp1")
-    public Result<String> errorResp1() {
+    public Result<String> errorResp1(@RequestParam(value = "name") String name) {
+        log.info("name:{}", name);
         return Result.failed(Code.PARAMETER_ERROR, "error message");
     }
 

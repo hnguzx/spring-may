@@ -1,16 +1,10 @@
 package pers.guzx.demo.java;
 
 import lombok.extern.slf4j.Slf4j;
-import org.jasypt.encryption.StringEncryptor;
 import org.jasypt.util.text.BasicTextEncryptor;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import pers.guzx.common.util.StringEncryptorUtil;
-
-import javax.annotation.Resource;
+import pers.guzx.common.util.StringEncryptorUtils;
 
 /**
  * @author Guzx
@@ -40,7 +34,7 @@ public class EncryptedTest {
 
     @Test
     void testEncryptor(){
-        StringEncryptorUtil stringEncryptor = new StringEncryptorUtil();
+        StringEncryptorUtils stringEncryptor = new StringEncryptorUtils();
         String name = "guzx";
         String encrypt = stringEncryptor.encrypt(name);
         log.info(encrypt);

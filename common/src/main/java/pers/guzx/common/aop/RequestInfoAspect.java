@@ -6,7 +6,7 @@ import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
-import pers.guzx.common.util.DateUtil;
+import pers.guzx.common.util.DateUtils;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -26,7 +26,7 @@ public class RequestInfoAspect {
     public void logPointCut() {
     }
 
-    @Pointcut("execution(* pers.guzx..controller..*Controller.*(..))")
+    @Pointcut("execution(public pers.guzx.common.entity.dto.Result pers.guzx..controller..*Controller.*(..))")
     public void requestPointCut() {
     }
 
@@ -46,7 +46,7 @@ public class RequestInfoAspect {
     @Around("requestPointCut()")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
         Long startTime = System.currentTimeMillis();
-        String dateFormatString = DateUtil.getDateFormatString("yyyy-MM-dd HH:mm:ss");
+        String dateFormatString = DateUtils.getDateFormatString("yyyy-MM-dd HH:mm:ss");
 
         Signature signature = joinPoint.getSignature();
         if (!(signature instanceof MethodSignature)) {

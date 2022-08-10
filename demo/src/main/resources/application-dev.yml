@@ -109,4 +109,5 @@ spring:
       file-size-threshold: 10MB
 
 file:
-  storagePath: D:\tempFile
+  storage:
+    path: D:\tempFile

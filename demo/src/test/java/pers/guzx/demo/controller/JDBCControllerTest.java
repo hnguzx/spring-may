@@ -10,7 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
-import pers.guzx.common.util.JsonUtil;
+import pers.guzx.common.util.JsonUtils;
 import pers.guzx.demo.entity.vo.CountryVO;
 import pers.guzx.demo.entity.vo.PageResult;
 import pers.guzx.demo.service.CountryService;
@@ -67,6 +67,7 @@ class JDBCControllerTest {
 
         // Run the test
         final MockHttpServletResponse response = mockMvc.perform(get("/jdbc/getSingle/{countryId}", 0)
+                        .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andReturn().getResponse();
@@ -82,6 +83,7 @@ class JDBCControllerTest {
 
         // Run the test
         final MockHttpServletResponse response = mockMvc.perform(get("/jdbc/getSingle/{countryId}", 0)
+                        .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andReturn().getResponse();
@@ -151,8 +153,8 @@ class JDBCControllerTest {
         // Verify the results
         String contentAsString = response.getContentAsString(StandardCharsets.UTF_8);
 
-        String data = JsonUtil.getAsString(contentAsString, "data");
-        int code = JsonUtil.getAsInt(contentAsString, "code");
+        String data = JsonUtils.getAsString(contentAsString, "data");
+        int code = JsonUtils.getAsInt(contentAsString, "code");
         log.info("返回code:{},data:{}", code, data);
 
         /*Iterator<Map.Entry<String, JsonElement>> iterator = JsonUtil.getIteratorFromJsonString(contentAsString);
@@ -187,7 +189,8 @@ class JDBCControllerTest {
 
         // Run the test
         final MockHttpServletResponse response = mockMvc.perform(delete("/jdbc/deleteCountry")
-                        .content("{\"code\":10001}").contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"code\":10001}")
+                        .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andDo(print())
@@ -209,7 +212,8 @@ class JDBCControllerTest {
 
         // Run the test
         final MockHttpServletResponse response = mockMvc.perform(post("/jdbc/updateCountry")
-                        .content("{\"code\":10001}").contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"code\":10001}")
+                        .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andDo(print())

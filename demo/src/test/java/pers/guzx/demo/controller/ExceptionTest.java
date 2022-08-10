@@ -22,6 +22,7 @@ class ExceptionTest {
     @Test
     void testCommonException() throws java.lang.Exception {
         final MockHttpServletResponse response = mockMvc.perform(get("/exception/common")
+                        .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andDo(print())
@@ -33,6 +34,7 @@ class ExceptionTest {
     void testBaseException() throws java.lang.Exception {
 
         final MockHttpServletResponse response = mockMvc.perform(get("/exception/base")
+                        .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andDo(print())
