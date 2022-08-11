@@ -11,8 +11,6 @@
 #spring:
 #  application:
 #    name: demo-server
-#  profiles:
-#    active: dev
 #  datasource:
 #    driver-class-name: com.mysql.cj.jdbc.Driver
 #    username: ${base.mysql.username}

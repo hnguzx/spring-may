@@ -36,7 +36,7 @@ public class JDBCController {
         return Result.succeed();
     }
 
-    @GetMapping("/getMultiple/{current}/{size}")
+    @PostMapping("/getMultiple/{current}/{size}")
     public Result<PageResult<CountryVO>> getCountryList(@RequestBody CountryVO countryVO,@PathVariable Long current, @PathVariable Long size) {
         PageResult<CountryVO> countryByCountry = countryService.getCountryByCountry(countryVO, current, size);
         return Result.succeed(countryByCountry);
@@ -51,7 +51,7 @@ public class JDBCController {
         return Result.failed();
     }
 
-    @DeleteMapping("/deleteCountry")
+    @PostMapping("/deleteCountry")
     public Result<Boolean> deleteCountry(@RequestBody CountryVO countryVO) {
         boolean result = countryService.deleteCountry(countryVO);
         return Result.succeed(result);
