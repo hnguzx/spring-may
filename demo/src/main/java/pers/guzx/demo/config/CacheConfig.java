@@ -1,6 +1,7 @@
 package pers.guzx.demo.config;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurer;
@@ -20,6 +21,7 @@ import java.util.Arrays;
 /**
  * @author 25446
  */
+@Slf4j
 @Configuration
 public class CacheConfig implements CachingConfigurer {
 
@@ -56,7 +58,9 @@ public class CacheConfig implements CachingConfigurer {
         return new KeyGenerator() {
             @Override
             public Object generate(Object target, Method method, Object... params) {
-                return method.getName() + "[" + Arrays.asList(params) + "]";
+                String cacheKey = method.getName() + Arrays.asList(params);
+                log.info("cachKey:{}", cacheKey);
+                return cacheKey;
             }
         };
     }

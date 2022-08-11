@@ -47,7 +47,7 @@ public interface CountryService {
      * @param id
      * @return
      */
-    @Cacheable(cacheNames = "country", unless = "#result == null")
+    @Cacheable(cacheNames = "country", keyGenerator = "keyGenerator", unless = "#result == null")
     Optional<CountryVO> getCountryById(Long id);
 
     /**
