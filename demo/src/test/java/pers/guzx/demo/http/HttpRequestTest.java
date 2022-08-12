@@ -7,13 +7,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.*;
+import org.springframework.http.client.ClientHttpRequest;
+import org.springframework.http.client.ClientHttpResponse;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RequestCallback;
+import org.springframework.web.client.ResponseExtractor;
 import pers.guzx.common.entity.dto.Result;
 import pers.guzx.common.util.JsonUtils;
 import pers.guzx.demo.entity.vo.CountryVO;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -77,11 +92,11 @@ public class HttpRequestTest {
 
         // 构建请求参数
         /*MultiValueMap<String, Object> data = new LinkedMultiValueMap<>();
-        data.put("code", Collections.singletonList(20001));
-        data.put("name", Collections.singletonList("new name"));
-        data.put("englishName", Collections.singletonList("new english name"));
-        data.put("island", Collections.singletonList("new island"));
-        data.put("language", Collections.singletonList("new language"));*/
+        data.add("code", 20001);
+        data.add("name", "new name");
+        data.add("englishName", "new english name");
+        data.add("island", "new island");
+        data.add("language", "new language");*/
 
         /*CountryVO countryVO = new CountryVO();
         countryVO.setCode(20001);
@@ -175,5 +190,53 @@ public class HttpRequestTest {
         Object response = restTemplate.postForObject(url, entity, Object.class);
 
         log.info("response: {}", response.toString());
+    }
+
+    @Test
+    void testUploadFile() {
+        String url = "http://127.0.0.1:" + port + "/uploadFile/single";
+        String filePath = "C:\\Users\\25446\\Desktop\\fsdownload\\1660286463665.jpg";
+
+        FileSystemResource resource = new FileSystemResource(new File(filePath));
+        MultiValueMap<String, Object> param = new LinkedMultiValueMap<>();
+        param.add("uploadFile", resource);
+        param.add("description", "文件描述...");
+
+        Result result = restTemplate.postForObject(url, param, Result.class);
+        assertEquals(result.getCode(), 200);
+    }
+
+    /**
+     * 小文件下载
+     */
+    @Test
+    void testDownloadFile() throws IOException {
+        String fileMd5 = "04111c019f99ebf035bb4fbf4842e13f";
+        String url = "http://127.0.0.1:" + port + "/downloadFile/" + fileMd5;
+        String targetPath = "C:\\Users\\25446\\Desktop\\fsdownload\\temp.jpg";
+
+        ResponseEntity<byte[]> forEntity = restTemplate.getForEntity(url, byte[].class);
+        log.info("status:{}", forEntity.getStatusCode());
+
+        Files.write(Paths.get(targetPath), Objects.requireNonNull(forEntity.getBody(), "下载失败"));
+    }
+
+    @Test
+    void testDownloadBigFile() {
+        String fileMd5 = "04111c019f99ebf035bb4fbf4842e13f";
+        String url = "http://127.0.0.1:" + port + "/downloadFile/" + fileMd5;
+        String targetPath = "C:\\Users\\25446\\Desktop\\fsdownload\\temp.jpg";
+
+        RequestCallback callback = request -> {
+            HttpHeaders headers = request.getHeaders();
+            List<MediaType> headersList = new ArrayList<>();
+            headersList.add(MediaType.APPLICATION_OCTET_STREAM);
+            headersList.add(MediaType.ALL);
+            headers.setAccept(headersList);
+        };
+        restTemplate.execute(url, HttpMethod.GET, callback, response -> {
+            Files.copy(response.getBody(), Paths.get(targetPath));
+            return null;
+        });
     }
 }
