@@ -1,4 +1,4 @@
-package pers.guzx.demo.config;
+package pers.guzx.common.config;
 
 
 import lombok.extern.slf4j.Slf4j;

@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Update;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.beans.BeanUtils;
 import pers.guzx.demo.entity.po.Country;
@@ -27,8 +26,8 @@ public class CountryVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Range(min = 10000, max = 99999, message = "out of maximum range", groups = Update.class)
-    @NotNull(message = "can not be empty", groups = {Insert.class, Update.class})
+    @Range(min = 10000, max = 99999, message = "out of maximum range")
+    @NotNull(message = "can not be empty")
     private Integer code;
     @NotBlank(message = "can not be empty", groups = Insert.class)
     private String name;

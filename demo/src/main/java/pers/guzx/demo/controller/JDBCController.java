@@ -1,6 +1,6 @@
 package pers.guzx.demo.controller;
 
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.Insert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +10,7 @@ import pers.guzx.demo.entity.vo.CountryVO;
 import pers.guzx.demo.entity.vo.PageResult;
 import pers.guzx.demo.service.CountryService;
 
-import javax.validation.Valid;
+import javax.validation.groups.Default;
 import java.util.Optional;
 
 /**
@@ -43,7 +43,7 @@ public class JDBCController {
     }
 
     @PutMapping("/addCountry")
-    public Result<CountryVO> addCountry(@RequestBody @Valid CountryVO countryVO) {
+    public Result<CountryVO> addCountry(@RequestBody @Validated({Insert.class, Default.class}) CountryVO countryVO) {
         boolean result = countryService.addCountry(countryVO);
         if (result) {
             return Result.succeed(countryVO);
@@ -58,7 +58,7 @@ public class JDBCController {
     }
 
     @PostMapping("/updateCountry")
-    public Result<CountryVO> updateCountry(@RequestBody @Validated(Update.class) CountryVO countryVO) {
+    public Result<CountryVO> updateCountry(@RequestBody @Validated CountryVO countryVO) {
         boolean result = countryService.updateCountry(countryVO);
         return result ? Result.succeed() : Result.failed();
     }

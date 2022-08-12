@@ -24,9 +24,6 @@ public class Result<T> implements Serializable {
     private Integer code;
     private String message;
 
-    private static final int SUCCESS_CODE = 200;
-    private static final String SUCCESS_MSG = "SUCCESS";
-
     public static <D> Result<D> succeed() {
         return succeedWith(null, Code.SUCCESS.getCode(), null);
     }
@@ -66,9 +63,5 @@ public class Result<T> implements Serializable {
 
     public static <D> Result<D> failedWith(D data, Integer code, String msg) {
         return new Result<D>(data, code, msg);
-    }
-
-    public boolean isOk() {
-        return code == SUCCESS_CODE;
     }
 }

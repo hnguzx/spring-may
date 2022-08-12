@@ -58,7 +58,7 @@ public interface CountryService {
      * @param size
      * @return
      */
-    @Cacheable(cacheNames = "country")
+    @Cacheable(cacheNames = "country", key = "#root.caches[0].name")
     PageResult<CountryVO> getCountryByCountry(CountryVO country, Long current, Long size);
 
 }
