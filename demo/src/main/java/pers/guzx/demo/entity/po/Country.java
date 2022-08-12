@@ -9,6 +9,8 @@ import lombok.Data;
 import org.springframework.beans.BeanUtils;
 import pers.guzx.demo.entity.vo.CountryVO;
 
+import java.io.Serializable;
+
 /**
  * @author Guzx
  * @version 1.0
@@ -18,7 +20,10 @@ import pers.guzx.demo.entity.vo.CountryVO;
 @TableName("country")
 @Builder
 @Data
-public class Country {
+public class Country implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @TableId(value = "id",type = IdType.ASSIGN_ID)
     private Long id;
     @TableField(value = "code")

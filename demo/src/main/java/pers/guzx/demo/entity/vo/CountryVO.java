@@ -1,17 +1,17 @@
 package pers.guzx.demo.entity.vo;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Update;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.beans.BeanUtils;
-import org.springframework.format.annotation.DateTimeFormat;
 import pers.guzx.demo.entity.po.Country;
 
 import javax.validation.constraints.*;
-import java.time.LocalDate;
-import java.util.Date;
+import java.io.Serializable;
 
 /**
  * @author Guzx
@@ -20,7 +20,13 @@ import java.util.Date;
  * @describe
  */
 @Data
-public class CountryVO {
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class CountryVO implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Range(min = 10000, max = 99999, message = "out of maximum range", groups = Update.class)
     @NotNull(message = "can not be empty", groups = {Insert.class, Update.class})
     private Integer code;
