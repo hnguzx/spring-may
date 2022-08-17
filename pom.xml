@@ -30,6 +30,8 @@
         <module>job</module>
         <!--        监控-->
         <module>monitor</module>
+        <!--        用户中心-->
+        <module>user</module>
         <!--        后台管理-->
         <!--        <module>admin</module>-->
         <!--        业务-->
