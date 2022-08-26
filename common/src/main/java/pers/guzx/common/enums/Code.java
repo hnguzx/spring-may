@@ -64,6 +64,9 @@ public enum Code {
     USER_DISCONNECT_SUCCESS(200015, "断开连接成功"),
     USER_NOT_AUTH(200016, "用户没有权限"),
     CUSTOMER_AUTHORITY_FAIL(200017, "客户认证失败"),
+    CUSTOMER_AUTHORITY_CLEAN(200018, "客户认证信息清除"),
+    CUSTOMER_AUTHORITY_TIMEOUT(200019, "客户认证超时"),
+    CUSTOMER_AUTHORITY_SUCCESS(200020, "客户认证成功"),
     // 3000-3999 通知相关错误
     DIARY_NOTFOUND(300000, "日记信息不存在！"),
     // 4000-4999 好友相关错误
