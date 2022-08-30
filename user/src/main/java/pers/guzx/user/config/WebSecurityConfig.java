@@ -3,7 +3,6 @@ package pers.guzx.user.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -18,13 +17,13 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.authentication.session.*;
 import org.springframework.security.web.session.ConcurrentSessionFilter;
-import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.security.web.session.SimpleRedirectSessionInformationExpiredStrategy;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import pers.guzx.user.authentication.*;
 import pers.guzx.user.authorize.AuthorizeFailure;
+import pers.guzx.user.authorize.ObjectPostProcessorImpl;
 import pers.guzx.user.service.impl.UserServiceImpl;
 
 import javax.sql.DataSource;
@@ -63,6 +62,11 @@ public class WebSecurityConfig {
     private AdditionalAuthenticationChecks additionalAuthenticationChecks;
     @Autowired
     private DataSource dataSource;
+    @Autowired
+    private AuthenticationManagerImpl authenticationManager;
+
+    @Autowired
+    private ObjectPostProcessorImpl objectPostProcessor;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -70,13 +74,13 @@ public class WebSecurityConfig {
         http.csrf().disable();
 
         http.authorizeRequests() // 对请求进行授权
-                .antMatchers("/common/**").permitAll()
+                .withObjectPostProcessor(objectPostProcessor)
                 .anyRequest() // 其它所有请求需要认证
                 .authenticated();
 
         // 认证相关配置
         http.authenticationProvider(authenticationProvider)
-                .addFilterAt(authenticationFilter(),UsernamePasswordAuthenticationFilter.class);
+                .addFilterAt(authenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
         // 清除认证信息
         http.logout()
@@ -84,11 +88,11 @@ public class WebSecurityConfig {
                 .logoutSuccessHandler(authenticationInfoClean)
                 .deleteCookies("JSESSIONID");
 
-        // remember me功能
+        // remember me
         http.rememberMe()
                 .rememberMeServices(rememberMeServices());
 
-        // session管理
+        // session
         http.sessionManagement()
                 .sessionAuthenticationStrategy(sessionAuthenticationStrategy());
 
@@ -112,7 +116,7 @@ public class WebSecurityConfig {
         authFilter.setAuthenticationSuccessHandler(successHandler);
         authFilter.setAuthenticationFailureHandler(failureHandler);
         authFilter.setFilterProcessesUrl(LOGIN_URL);
-        authFilter.setAuthenticationManager(authenticationManager());
+        authFilter.setAuthenticationManager(authenticationManager);
         authFilter.setRememberMeServices(rememberMeServices());
         authFilter.setSessionAuthenticationStrategy(sessionAuthenticationStrategy());
         return authFilter;
@@ -140,17 +144,8 @@ public class WebSecurityConfig {
         return source;
     }
 
-    @Bean
-    public AuthenticationManager authenticationManager() {
-        AuthenticationManagerImpl authManager = new AuthenticationManagerImpl();
-        return authManager;
-    }
+    // remember me begin
 
-    /**
-     * remember me services
-     *
-     * @return
-     */
     @Bean
     public PersistentTokenBasedRememberMeServices rememberMeServices() {
         PersistentTokenBasedRememberMeServices rememberMeServices = new PersistentTokenBasedRememberMeServices(REMEMBER_ME_KEY, userService, persistentTokenRepository());
@@ -162,19 +157,16 @@ public class WebSecurityConfig {
         return rememberMeServices;
     }
 
-    /**
-     * remember me token save
-     *
-     * @return
-     */
     @Bean
     public PersistentTokenRepository persistentTokenRepository() {
         JdbcTokenRepositoryImpl persistentTokenRepository = new JdbcTokenRepositoryImpl();
         persistentTokenRepository.setDataSource(dataSource);
         return persistentTokenRepository;
     }
+    // remember me end
 
-    // 并发登录配置 begin
+    // session concurrent begin
+
     @Bean
     public ConcurrentSessionControlAuthenticationStrategy concurrentSessionControlAuthenticationStrategy() {
         ConcurrentSessionControlAuthenticationStrategy sessionControlAuthenticationStrategy =
@@ -213,6 +205,7 @@ public class WebSecurityConfig {
 
     /**
      * 会话过期后跳转路径
+     *
      * @return
      */
     @Bean
@@ -224,6 +217,6 @@ public class WebSecurityConfig {
     public SessionRegistry sessionRegistry() {
         return new SessionRegistryImpl();
     }
-    //并发登录配置 end
+    // session concurrent end
 
 }

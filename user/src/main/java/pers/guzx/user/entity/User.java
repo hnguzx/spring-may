@@ -18,20 +18,19 @@ import java.util.Objects;
 /**
  * @author 25446
  */
-@TableName("sys_user")
+@TableName("user")
 @Getter
 @Setter
 public class User implements UserDetails, Serializable {
 
-    @TableId(value = "id")
+    @TableId
     private Integer userId;
+    private Integer roleId;
+    private Integer authorityId;
     private String username;
     private String password;
-    @TableField(value = "account_expired")
     private Boolean accountNonExpired;
-    @TableField(value = "account_locked")
     private Boolean accountNonLocked;
-    @TableField(value = "credentials_expired")
     private Boolean credentialsNonExpired;
     private Boolean enabled;
 
@@ -42,7 +41,7 @@ public class User implements UserDetails, Serializable {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return this.authorities;
     }
 
     @Override
@@ -76,18 +75,30 @@ public class User implements UserDetails, Serializable {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof User) {
-            return this.username.equals(((User) obj).username);
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
         }
-        return false;
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        User user = (User) o;
+        return Objects.equals(getUserId(), user.getUserId()) &&
+                Objects.equals(getUsername(), user.getUsername()) &&
+                Objects.equals(getPassword(), user.getPassword()) &&
+                Objects.equals(isAccountNonExpired(), user.isAccountNonExpired()) &&
+                Objects.equals(isAccountNonLocked(), user.isAccountNonLocked()) &&
+                Objects.equals(isCredentialsNonExpired(), user.isCredentialsNonExpired()) &&
+                Objects.equals(isEnabled(), user.isEnabled()) &&
+                Objects.equals(getRoleId(), user.getRoleId()) &&
+                Objects.equals(getAuthorityId(), user.getAuthorityId()) &&
+                Objects.equals(getRoles(), user.getRoles()) &&
+                Objects.equals(getAuthorities(), user.getAuthorities());
     }
 
-    /**
-     * Returns the hashcode of the {@code username}.
-     */
     @Override
     public int hashCode() {
-        return this.username.hashCode();
+        return Objects.hash(getUserId(), getUsername(), getPassword(), isAccountNonExpired(), isAccountNonLocked(),
+                isCredentialsNonExpired(), isEnabled(), getRoleId(), getAuthorityId(), getRoles(), getAuthorities());
     }
 }

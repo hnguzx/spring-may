@@ -3,6 +3,7 @@ package pers.guzx.user.controller;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pers.guzx.common.entity.dto.Result;
 import pers.guzx.user.entity.User;
@@ -14,12 +15,8 @@ import java.security.Principal;
  * @author 25446
  */
 @RestController
+@RequestMapping("/user")
 public class UserController {
-
-    @GetMapping("/user")
-    public Result<String> user() {
-        return Result.succeed("user");
-    }
 
     @GetMapping("/getLoginUserByPrincipal")
     public Result<String> getLoginUserByPrincipal(Principal principal) {
@@ -44,10 +41,5 @@ public class UserController {
             return Result.succeed(((User) principal).getUsername());
         }
         return Result.succeed(principal);
-    }
-
-    @GetMapping("/admin")
-    public Result<String> admin() {
-        return Result.succeed("admin");
     }
 }

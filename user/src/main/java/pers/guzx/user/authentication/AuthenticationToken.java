@@ -21,9 +21,9 @@ public class AuthenticationToken extends AbstractAuthenticationToken {
 
     /**
      * 未认证
-     *
      * @param principal
      * @param credentials
+     * @param loginType
      */
     public AuthenticationToken(Object principal, Object credentials, LoginType loginType) {
         super(null);
@@ -35,9 +35,7 @@ public class AuthenticationToken extends AbstractAuthenticationToken {
 
     /**
      * 认证成功
-     *
      * @param principal
-     * @param credentials
      * @param authorities
      */
     public AuthenticationToken(Object principal, Collection<? extends GrantedAuthority> authorities) {

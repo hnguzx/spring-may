@@ -17,4 +17,5 @@ public class AuthorityServiceImpl implements AuthorityService {
     @Autowired
     private AuthorityMapper authorityMapper;
 
+
 }
