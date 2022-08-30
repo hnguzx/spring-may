@@ -57,6 +57,6 @@ public class DemoController {
 
     @GetMapping("/errorResp2")
     public Result<String> errorResp2() {
-        return Result.failedWith("error data", 405, "error message");
+        return Result.buildResult("error data", 405, "error message");
     }
 }

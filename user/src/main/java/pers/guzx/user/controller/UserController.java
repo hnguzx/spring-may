@@ -16,11 +16,6 @@ import java.security.Principal;
 @RestController
 public class UserController {
 
-    @GetMapping("/common")
-    public Result<String> getdemo() {
-        return Result.succeed("common");
-    }
-
     @GetMapping("/user")
     public Result<String> user() {
         return Result.succeed("user");

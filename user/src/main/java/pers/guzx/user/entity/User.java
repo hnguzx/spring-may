@@ -76,19 +76,18 @@ public class User implements UserDetails, Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+    public boolean equals(Object obj) {
+        if (obj instanceof User) {
+            return this.username.equals(((User) obj).username);
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        User user = (User) o;
-        return Objects.equals(getUserId(), user.getUserId()) && Objects.equals(getUsername(), user.getUsername()) && Objects.equals(getPassword(), user.getPassword()) && Objects.equals(isAccountNonExpired(), user.isAccountNonExpired()) && Objects.equals(isAccountNonLocked(), user.isAccountNonLocked()) && Objects.equals(isCredentialsNonExpired(), user.isCredentialsNonExpired()) && Objects.equals(isEnabled(), user.isEnabled()) && Objects.equals(getRoles(), user.getRoles()) && Objects.equals(getAuthorities(), user.getAuthorities());
+        return false;
     }
 
+    /**
+     * Returns the hashcode of the {@code username}.
+     */
     @Override
     public int hashCode() {
-        return Objects.hash(getUserId(), getUsername(), getPassword(), isAccountNonExpired(), isAccountNonLocked(), isCredentialsNonExpired(), isEnabled(), getRoles(), getAuthorities());
+        return this.username.hashCode();
     }
 }

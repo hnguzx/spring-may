@@ -17,5 +17,7 @@ public class Constant {
     public static final String CODE = "code";
     public static final String LOGIN_TYPE = "type";
     public static final Integer MAX_REMEMBER_TIME = 60;
-    public static final Integer MAX_SESSIONS = 2;
+    public static final Integer MAX_SESSIONS = 1;
+
+    public static final String INVALID_SESSION_URL = "/common/session/expired";
 }

@@ -29,7 +29,7 @@ import java.util.Map;
  * 自定义认证过滤器。构建一个未认证的AuthenticationToken
  * 参考：UsernamePasswordAuthenticationFilter
  */
-public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+public class AuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
     private boolean postOnly = true;
     private static final AntPathRequestMatcher DEFAULT_ANT_PATH_REQUEST_MATCHER = new AntPathRequestMatcher(Constant.LOGIN_URL,
@@ -38,11 +38,11 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private SessionAuthenticationStrategy sessionAuthenticationStrategy;
 
     public AuthenticationFilter() {
-        super();
+        super(DEFAULT_ANT_PATH_REQUEST_MATCHER);
     }
 
     public AuthenticationFilter(AuthenticationManager authenticationManager) {
-        super(authenticationManager);
+        super(DEFAULT_ANT_PATH_REQUEST_MATCHER, authenticationManager);
     }
 
     /**

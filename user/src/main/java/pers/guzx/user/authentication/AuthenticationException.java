@@ -2,6 +2,7 @@ package pers.guzx.user.authentication;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 import pers.guzx.common.entity.dto.Result;
@@ -22,10 +23,16 @@ import java.io.IOException;
 public class AuthenticationException implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, org.springframework.security.core.AuthenticationException authException) throws IOException, ServletException {
-        log.error("authentication exception：{}", authException);
+        log.error("authentication exception!", authException);
 
         response.setStatus(HttpStatus.OK.value());
         response.setContentType("application/json;charset=utf-8");
-        response.getWriter().write(JsonUtils.toJsonString(Result.succeed(Code.USER_NOT_AUTH)));
+        Result<Code> result = null;
+        if (authException instanceof InsufficientAuthenticationException) {
+            result = Result.failed(Code.USER_NOT_LOGIN);
+        } else {
+            result = Result.failed(Code.USER_NOT_AUTH);
+        }
+        response.getWriter().write(JsonUtils.toJsonString(result));
     }
 }

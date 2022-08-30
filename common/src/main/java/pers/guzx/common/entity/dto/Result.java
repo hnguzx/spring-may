@@ -25,43 +25,46 @@ public class Result<T> implements Serializable {
     private String message;
 
     public static <D> Result<D> succeed() {
-        return succeedWith(null, Code.SUCCESS.getCode(), null);
+        return buildResult(null, Code.SUCCESS.getCode(), null);
     }
 
     public static <D> Result<D> succeed(D model, String msg) {
-        return succeedWith(model, Code.SUCCESS.getCode(), msg);
+        return buildResult(model, Code.SUCCESS.getCode(), msg);
     }
 
     public static <D> Result<D> succeed(D model) {
-        return succeedWith(model, Code.SUCCESS.getCode(), "");
+        return buildResult(model, Code.SUCCESS.getCode(), "");
     }
 
-    public static <D> Result<D> succeedWith(D data, Integer code, String msg) {
-        return new Result<D>(data, code, msg);
+    public static <D> Result<D> succeed(Code code) {
+        return buildResult(null, Code.SUCCESS.getCode(), code.getMsg());
     }
-
 
     public static <D> Result<D> failed() {
-        return failedWith(null, Code.ERROR.getCode(), null);
+        return buildResult(null, Code.ERROR.getCode(), null);
     }
 
     public static <D> Result<D> failed(D model) {
-        return failedWith(model, Code.ERROR.getCode(), Code.ERROR.getMsg());
+        return buildResult(model, Code.ERROR.getCode(), Code.ERROR.getMsg());
     }
 
     public static <D> Result<D> failed(D model, String msg) {
-        return failedWith(model, Code.ERROR.getCode(), msg);
+        return buildResult(model, Code.ERROR.getCode(), msg);
     }
 
     public static <D> Result<D> failed(D model, Code code) {
-        return failedWith(model, code.getCode(), code.getMsg());
+        return buildResult(model, code.getCode(), code.getMsg());
     }
 
     public static <D> Result<D> failed(Code code, String msg) {
-        return failedWith(null, code.getCode(), msg);
+        return buildResult(null, code.getCode(), msg);
     }
 
-    public static <D> Result<D> failedWith(D data, Integer code, String msg) {
+    public static <D> Result<D> failed(Code code) {
+        return buildResult(null, code.getCode(), code.getMsg());
+    }
+
+    public static <D> Result<D> buildResult(D data, Integer code, String msg) {
         return new Result<D>(data, code, msg);
     }
 }

@@ -19,4 +19,4 @@ spring:
         max-wait: 1000
     timeout: 3000
 
-debug: true
+#debug: true
