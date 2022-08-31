@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author 25446
- * 后校验，参考DefaultPostAuthenticationChecks
+ * 后校验，参考DefaultPostAuthenticationChecks，判断密码或验证码
  */
 @Slf4j
 @Component

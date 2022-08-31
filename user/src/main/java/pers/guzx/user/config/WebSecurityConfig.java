@@ -3,6 +3,8 @@ package pers.guzx.user.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.access.AccessDecisionManager;
+import org.springframework.security.access.AccessDecisionVoter;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -22,8 +24,9 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import pers.guzx.user.authentication.*;
+import pers.guzx.user.authorize.AccessDecisionManagerImpl;
+import pers.guzx.user.authorize.AccessDecisionVoterImpl;
 import pers.guzx.user.authorize.AuthorizeFailure;
-import pers.guzx.user.authorize.ObjectPostProcessorImpl;
 import pers.guzx.user.service.impl.UserServiceImpl;
 
 import javax.sql.DataSource;
@@ -64,9 +67,10 @@ public class WebSecurityConfig {
     private DataSource dataSource;
     @Autowired
     private AuthenticationManagerImpl authenticationManager;
-
+    //@Autowired
+    //private ObjectPostProcessorImpl objectPostProcessor;
     @Autowired
-    private ObjectPostProcessorImpl objectPostProcessor;
+    private AccessDecisionVoterImpl accessDecisionVoter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -74,7 +78,7 @@ public class WebSecurityConfig {
         http.csrf().disable();
 
         http.authorizeRequests() // 对请求进行授权
-                .withObjectPostProcessor(objectPostProcessor)
+                .accessDecisionManager(accessDecisionManager())
                 .anyRequest() // 其它所有请求需要认证
                 .authenticated();
 
@@ -120,6 +124,18 @@ public class WebSecurityConfig {
         authFilter.setRememberMeServices(rememberMeServices());
         authFilter.setSessionAuthenticationStrategy(sessionAuthenticationStrategy());
         return authFilter;
+    }
+
+    /**
+     * 授权处理
+     */
+    @Bean
+    public AccessDecisionManager accessDecisionManager() {
+        List<AccessDecisionVoter<? extends Object>> accessDecisionVoters = new ArrayList<>();
+        accessDecisionVoters.add(accessDecisionVoter);
+        AccessDecisionManagerImpl accessDecisionManager = new AccessDecisionManagerImpl(accessDecisionVoters);
+        accessDecisionManager.setAllowIfAllAbstainDecisions(true);
+        return new AccessDecisionManagerImpl(accessDecisionVoters);
     }
 
     /**

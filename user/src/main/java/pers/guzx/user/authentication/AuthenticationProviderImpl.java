@@ -8,6 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
+import pers.guzx.user.entity.User;
 import pers.guzx.user.service.impl.UserServiceImpl;
 
 /**
@@ -35,11 +36,12 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
         if (userDetails == null) {
             throw new UsernameNotFoundException("username not found");
         }
+
         preAuthenticationChecks.check(userDetails);
         additionalAuthenticationChecks.check(userDetails);
         postAuthenticationChecks.check(userDetails);
 
-        AuthenticationToken token = new AuthenticationToken(userDetails, userDetails.getAuthorities());
+        AuthenticationToken token = new AuthenticationToken(userDetails, ((User) userDetails).getRoles(), userDetails.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(token);
 
         return token;

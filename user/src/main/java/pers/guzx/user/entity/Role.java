@@ -11,16 +11,15 @@ import java.util.List;
 
 /**
  * @author 25446
+ * 后续可扩展为分部门，不同部门权限不同，上级拥有下级全部权限
  */
 @TableName("role")
 @Data
-@Builder
 public class Role {
     @TableId
     private Integer roleId;
     private String roleName;
     private Boolean enabled;
-    private Integer authorityId;
     @TableField(exist = false)
     private List<Authority> authorities;
 }

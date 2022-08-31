@@ -12,8 +12,8 @@ import pers.guzx.common.entity.dto.Result;
 @RequestMapping("/common")
 public class CommonController {
 
-    @GetMapping("/connection")
-    public Result<String> connection(){
+    @GetMapping("/test")
+    public Result<String> test(){
         return Result.succeed();
     }
 

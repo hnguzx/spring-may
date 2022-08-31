@@ -25,8 +25,6 @@ public class User implements UserDetails, Serializable {
 
     @TableId
     private Integer userId;
-    private Integer roleId;
-    private Integer authorityId;
     private String username;
     private String password;
     private Boolean accountNonExpired;
@@ -90,8 +88,6 @@ public class User implements UserDetails, Serializable {
                 Objects.equals(isAccountNonLocked(), user.isAccountNonLocked()) &&
                 Objects.equals(isCredentialsNonExpired(), user.isCredentialsNonExpired()) &&
                 Objects.equals(isEnabled(), user.isEnabled()) &&
-                Objects.equals(getRoleId(), user.getRoleId()) &&
-                Objects.equals(getAuthorityId(), user.getAuthorityId()) &&
                 Objects.equals(getRoles(), user.getRoles()) &&
                 Objects.equals(getAuthorities(), user.getAuthorities());
     }
@@ -99,6 +95,6 @@ public class User implements UserDetails, Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getUserId(), getUsername(), getPassword(), isAccountNonExpired(), isAccountNonLocked(),
-                isCredentialsNonExpired(), isEnabled(), getRoleId(), getAuthorityId(), getRoles(), getAuthorities());
+                isCredentialsNonExpired(), isEnabled(), getRoles(), getAuthorities());
     }
 }

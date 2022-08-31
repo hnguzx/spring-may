@@ -5,8 +5,8 @@ package pers.guzx.user.common;
  */
 public class Constant {
 
-    public static final String LOGIN_URL = "/login";
-    public static final String LOGOUT_URL = "/logout";
+    public static final String LOGIN_URL = "/common/login";
+    public static final String LOGOUT_URL = "/common/logout";
     public static final String REMEMBER_ME_PARAMETER = "remember";
     public static final String REMEMBER_ME_KEY = "rememberMeKey";
 
@@ -20,4 +20,6 @@ public class Constant {
     public static final Integer MAX_SESSIONS = 1;
 
     public static final String INVALID_SESSION_URL = "/common/session/expired";
+
+    public static final String COMMON_REQUEST_PREFIX = "common";
 }

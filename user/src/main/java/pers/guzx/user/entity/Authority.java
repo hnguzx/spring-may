@@ -11,17 +11,16 @@ import org.springframework.security.core.GrantedAuthority;
  */
 @TableName("authority")
 @Data
-@Builder
 public class Authority implements GrantedAuthority {
     @TableId
     private Integer authorityId;
-    private String authority;
+    private String description;
     private String code;
     private String url;
     private Boolean enabled;
 
     @Override
     public String getAuthority() {
-        return null;
+        return this.code;
     }
 }

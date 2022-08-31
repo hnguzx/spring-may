@@ -3,8 +3,10 @@ package pers.guzx.user.authentication;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import pers.guzx.user.common.LoginType;
+import pers.guzx.user.entity.Role;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @author 25446
@@ -19,8 +21,11 @@ public class AuthenticationToken extends AbstractAuthenticationToken {
 
     private LoginType loginType;
 
+    private List<Role> roles;
+
     /**
      * 未认证
+     *
      * @param principal
      * @param credentials
      * @param loginType
@@ -35,13 +40,15 @@ public class AuthenticationToken extends AbstractAuthenticationToken {
 
     /**
      * 认证成功
+     *
      * @param principal
      * @param authorities
      */
-    public AuthenticationToken(Object principal, Collection<? extends GrantedAuthority> authorities) {
+    public AuthenticationToken(Object principal, List<Role> roles, Collection<? extends GrantedAuthority> authorities) {
         super(authorities);
         this.principal = principal;
         super.setAuthenticated(true);
+        this.roles = roles;
     }
 
     @Override
@@ -56,5 +63,9 @@ public class AuthenticationToken extends AbstractAuthenticationToken {
 
     public LoginType getLoginType() {
         return this.loginType;
+    }
+
+    public List<Role> getRoles() {
+        return this.roles;
     }
 }

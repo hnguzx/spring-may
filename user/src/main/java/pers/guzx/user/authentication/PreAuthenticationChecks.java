@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author 25446
- * 预校验，参考DefaultPreAuthenticationChecks
+ * 预校验，参考DefaultPreAuthenticationChecks，判断用户状态
  */
 @Slf4j
 @Component

@@ -1,38 +1,32 @@
 drop table if exists user;
 create table user
 (
-    user_id int(10) not null auto_increment comment '用户id',
-	role_id int(10) null default null comment '角色id',
-	authority_id int(10) null default null comment '权限id',
-	username varchar(255) not null comment '用户名',
-	password varchar(255) not null comment '密码',
-	account_non_expired bit(1) not null comment '账号是否到期',
-	account_non_locked bit(1) not null comment '账号是否锁定',
-	credentials_non_expired bit(1) not null comment '密码是否过期',
-	enabled bit(1) not null comment '账号是否启用',
-primary key (user_id)
-	using BTREE
+    user_id int not null auto_increment COMMENT '用户id',
+	username varchar(255) not null COMMENT '用户名',
+	password varchar(255) not null COMMENT '密码',
+	account_non_expired bit(1) not null COMMENT '账号是否到期',
+	account_non_locked bit(1) not null COMMENT '账号是否锁定',
+	credentials_non_expired bit(1) not null COMMENT '密码是否过期',
+	enabled bit(1) not null COMMENT '账号是否启用',
+	primary key (user_id) using BTREE
 );
 
-drop table IF EXISTS role;
-create TABLE role
+DROP TABLE IF EXISTS role;
+CREATE TABLE role
 (
-    role_id int(10) NOT NULL AUTO_INCREMENT comment '角色id',
-    role_name varchar(255) NOT NULL comment '角色名称',
-    authority_id int(10) null default null comment '权限id',
-    enabled bit(1) not null comment '角色是否启用',
+    role_id   int NOT NULL AUTO_INCREMENT COMMENT '角色id',
+    role_name varchar(255) NOT NULL COMMENT '角色名称',
+    enabled bit(1) not null COMMENT '角色是否启用',
     PRIMARY KEY (role_id) USING BTREE
 );
-
-
 
 DROP TABLE IF EXISTS authority;
 CREATE TABLE authority
 (
-    authority_id int(10) NOT NULL AUTO_INCREMENT COMMENT '资源id',
-    authority varchar(255) NULL DEFAULT NULL COMMENT '资源名称',
+    authority_id int NOT NULL AUTO_INCREMENT COMMENT '资源id',
     code varchar(255) NULL DEFAULT NULL COMMENT '资源代码',
     url  varchar(255) NULL DEFAULT NULL COMMENT '资源路径',
+    description varchar(255) NULL DEFAULT NULL COMMENT '资源描述',
     enabled bit(1) not null COMMENT '资源是否启用',
     PRIMARY KEY (authority_id) USING BTREE
 );
@@ -43,6 +37,34 @@ create table persistent_logins (
 	token varchar(64) not null,
 	last_used timestamp not null
 )
+
+DROP TABLE IF EXISTS user_role;
+CREATE TABLE user_role
+(
+    id      int NOT NULL AUTO_INCREMENT,
+    user_id int NULL DEFAULT NULL,
+    role_id int NULL DEFAULT NULL,
+    PRIMARY KEY (id) USING BTREE
+) ;
+
+DROP TABLE IF EXISTS user_authority;
+CREATE TABLE user_authority
+(
+    id      int NOT NULL AUTO_INCREMENT,
+    user_id int NULL DEFAULT NULL,
+    authority_id int NULL DEFAULT NULL,
+    PRIMARY KEY (id) USING BTREE
+) ;
+
+DROP TABLE IF EXISTS role_authority;
+CREATE TABLE role_authority
+(
+    id      int NOT NULL AUTO_INCREMENT,
+    role_id int NULL DEFAULT NULL,
+    authority_id int NULL DEFAULT NULL,
+    PRIMARY KEY (id) USING BTREE
+) ;
+
 
 insert into role(role_name,enabled) values ('ADMIN',1);
 insert into role(role_name,enabled) values ('USER',1);

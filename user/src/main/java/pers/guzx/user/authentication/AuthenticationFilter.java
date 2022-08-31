@@ -123,7 +123,7 @@ public class AuthenticationFilter extends AbstractAuthenticationProcessingFilter
 
     @Nullable
     protected String obtainUsername(HttpServletRequest request) {
-        return request.getParameter(Constant.LOGIN_PASSWORD);
+        return request.getParameter(Constant.LOGIN_USER_NAME);
     }
 
     @Nullable
