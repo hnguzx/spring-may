@@ -64,10 +64,22 @@ CREATE TABLE role_authority
     authority_id int NULL DEFAULT NULL,
     PRIMARY KEY (id) USING BTREE
 ) ;
-
+insert into authority(description,code,url,enabled) values('管理员测试权限','ADMIN_TEST','/admin/test',1);
+insert into authority(description,code,url,enabled) values('普通用户测试权限','USER_TEST','/user/username',1);
+insert into authority(description,code,url,enabled) values('特殊测试权限','PRIVATE_TEST','/private/test',1);
+insert into authority(description,code,url,enabled) values('公共测试权限','COMMON_TEST','/common/test',1);
 
 insert into role(role_name,enabled) values ('ADMIN',1);
 insert into role(role_name,enabled) values ('USER',1);
 
 insert into user(role_id,username,password,account_non_expired,account_non_locked,credentials_non_expired,enabled) values(1,'admin','$2a$10$tReJ0hvhYophaqfFDLF/rOmhgdbtCKnynOxSzjuupYbwuG5XyzVdW',1,1,1,1);
 insert into user(role_id,username,password,account_non_expired,account_non_locked,credentials_non_expired,enabled) values(2,'user','$2a$10$tReJ0hvhYophaqfFDLF/rOmhgdbtCKnynOxSzjuupYbwuG5XyzVdW',1,1,1,1);
+
+insert into user_role (user_id,role_id) values(1,1);
+insert into user_role (user_id,role_id) values(2,2);
+
+insert into role_authority(role_id,authority_id) values(1,1);
+insert into role_authority(role_id,authority_id) values(1,2);
+insert into role_authority(role_id,authority_id) values(2,2);
+
+insert into user_authority(user_id,authority_id) values(2,3);

@@ -43,7 +43,7 @@ public class AccessDecisionVoterImpl implements AccessDecisionVoter<FilterInvoca
         String prefix = Arrays.asList(requestURI.split("/")).get(1);
         List<Role> roles;
         // common请求全部通过
-        if(prefix.equalsIgnoreCase(COMMON_REQUEST_PREFIX)){
+        if (prefix.equalsIgnoreCase(COMMON_REQUEST_PREFIX)) {
             return ACCESS_GRANTED;
         }
 
@@ -57,7 +57,14 @@ public class AccessDecisionVoterImpl implements AccessDecisionVoter<FilterInvoca
         if (CollectionUtils.isEmpty(authorities)) {
             return ACCESS_DENIED;
         }
-        List<? extends GrantedAuthority> collect = authorities.parallelStream().filter(authority -> ((Authority)authority).getUrl().equals(requestURI)).collect(Collectors.toList());
+        List<? extends GrantedAuthority> collect = authorities.parallelStream().
+                filter(authority -> {
+                    if (authority instanceof Authority) {
+                        return ((Authority) authority).getUrl().equals(requestURI);
+                    } else {
+                        return authority.getAuthority().equals(requestURI);
+                    }
+                }).collect(Collectors.toList());
         if (collect.size() > 0) {
             return ACCESS_GRANTED;
         }

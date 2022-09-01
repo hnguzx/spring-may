@@ -23,7 +23,6 @@ public class AuthenticationExpired implements SessionInformationExpiredStrategy 
     @Override
     public void onExpiredSessionDetected(SessionInformationExpiredEvent event) throws IOException, ServletException {
         log.info("session expired");
-
         HttpServletResponse response = event.getResponse();
         response.setStatus(HttpStatus.OK.value());
         response.setContentType("application/json;charset=utf-8");

@@ -23,14 +23,13 @@ import java.io.IOException;
 public class AuthenticationException implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, org.springframework.security.core.AuthenticationException authException) throws IOException, ServletException {
-        log.error("authentication exception!", authException);
-
         response.setStatus(HttpStatus.OK.value());
         response.setContentType("application/json;charset=utf-8");
         Result<Code> result = null;
         if (authException instanceof InsufficientAuthenticationException) {
             result = Result.failed(Code.USER_NOT_LOGIN);
         } else {
+            log.error("authentication exception!", authException);
             result = Result.failed(Code.USER_NOT_AUTH);
         }
         response.getWriter().write(JsonUtils.toJsonString(result));

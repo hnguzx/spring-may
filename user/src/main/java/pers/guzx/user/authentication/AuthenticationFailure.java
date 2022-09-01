@@ -27,7 +27,6 @@ import java.io.IOException;
 public class AuthenticationFailure implements AuthenticationFailureHandler {
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
-        log.info("authentication failed!", exception);
         response.setStatus(HttpStatus.OK.value());
         response.setContentType("application/json;charset=utf-8");
         Result<Code> result = null;
@@ -40,6 +39,7 @@ public class AuthenticationFailure implements AuthenticationFailureHandler {
         } else if (exception instanceof AccountStatusException) {
             result = Result.failed(Code.CUSTOMER_ACCOUNT_STATUS_ERROR);
         } else {
+            log.info("authentication failed!", exception);
             result = Result.failed(Code.CUSTOMER_AUTHORITY_FAIL);
         }
         response.getWriter().write(JsonUtils.toJsonString(result));

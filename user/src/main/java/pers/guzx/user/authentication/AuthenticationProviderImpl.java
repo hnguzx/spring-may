@@ -38,7 +38,7 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
         }
 
         preAuthenticationChecks.check(userDetails);
-        additionalAuthenticationChecks.check(userDetails);
+        additionalAuthenticationChecks.check(userDetails, authentication);
         postAuthenticationChecks.check(userDetails);
 
         AuthenticationToken token = new AuthenticationToken(userDetails, ((User) userDetails).getRoles(), userDetails.getAuthorities());

@@ -1,6 +1,7 @@
 package pers.guzx.user.authentication;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.authentication.CredentialsExpiredException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsChecker;
 import org.springframework.stereotype.Component;
@@ -15,5 +16,8 @@ public class PostAuthenticationChecks implements UserDetailsChecker {
     @Override
     public void check(UserDetails userDetails) {
         log.info("Checking user details for post");
+        if (!userDetails.isCredentialsNonExpired()) {
+            throw new CredentialsExpiredException("User credentials have expired");
+        }
     }
 }

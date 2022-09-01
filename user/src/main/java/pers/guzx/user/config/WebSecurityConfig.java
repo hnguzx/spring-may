@@ -67,8 +67,6 @@ public class WebSecurityConfig {
     private DataSource dataSource;
     @Autowired
     private AuthenticationManagerImpl authenticationManager;
-    //@Autowired
-    //private ObjectPostProcessorImpl objectPostProcessor;
     @Autowired
     private AccessDecisionVoterImpl accessDecisionVoter;
 
@@ -136,28 +134,6 @@ public class WebSecurityConfig {
         AccessDecisionManagerImpl accessDecisionManager = new AccessDecisionManagerImpl(accessDecisionVoters);
         accessDecisionManager.setAllowIfAllAbstainDecisions(true);
         return new AccessDecisionManagerImpl(accessDecisionVoters);
-    }
-
-    /**
-     * 密码明文加密方式配置
-     *
-     * @return
-     */
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    /**
-     * 配置跨源访问(CORS)
-     *
-     * @return
-     */
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
-        return source;
     }
 
     // remember me begin
