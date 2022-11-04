@@ -11,6 +11,7 @@
         <module name="auth" />
         <module name="eureka" />
         <module name="monitor" />
+        <module name="api" />
         <module name="job" />
         <module name="config" />
         <module name="demo" />
@@ -18,13 +19,17 @@
         <module name="gateway" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="consumer-server" target="11" />
+      <module name="producer-server" target="11" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="auth" options="-parameters" />
-      <module name="common" options="-parameters" />
+      <module name="common" options="" />
       <module name="config" options="-parameters" />
-      <module name="demo" options="-parameters" />
+      <module name="demo" options="" />
       <module name="eureka" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="job" options="-parameters" />

@@ -1,4 +1,4 @@
-package pers.guzx.demo.entity.po;
+package pers.guzx.entity.demo.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
-import pers.guzx.demo.entity.vo.CountryVO;
+import pers.guzx.entity.demo.vo.CountryVO;
 
 import java.io.Serializable;
 
@@ -22,19 +22,18 @@ import java.io.Serializable;
 @Data
 public class Country implements Serializable {
 
-
+    private static final long serialVersionUID = 1L;
 
     @TableId(value = "id",type = IdType.ASSIGN_ID)
     private Long id;
+    @TableField(value = "code")
+    private Integer code;
     private String name;
     private String englishName;
     private String island;
     private String language;
     private Long population;
     private String grownDate;
-    @TableField(value = "code")
-    private Integer code;
-    private static final long serialVersionUID = 1L;
 
     public CountryVO toCountryVO() {
         CountryVO countryVO = new CountryVO();

@@ -3,10 +3,12 @@ package pers.guzx.demo.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.web.bind.annotation.*;
-import pers.guzx.common.entity.dto.Result;
-import pers.guzx.common.enums.Code;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import pers.guzx.api.demo.producer.DemoApi;
 import pers.guzx.demo.config.ConfigProperties;
+import pers.guzx.entity.Result;
+import pers.guzx.enums.SystemCode;
 
 import javax.annotation.Resource;
 
@@ -19,7 +21,7 @@ import javax.annotation.Resource;
 @RefreshScope
 @Slf4j
 @RestController
-public class DemoController {
+public class DemoController implements DemoApi {
 
     @Value("${spring.application.name}")
     private String applicationName;
@@ -30,32 +32,27 @@ public class DemoController {
     @Value("${test.name}")
     private String test;
 
-    @GetMapping("conn")
     public String testConn() {
         return test;
     }
 
-    @GetMapping("/successResp1")
     public Result<String> successResp1() {
         String address = configProperties.getTimeout();
         log.info("配置文件中属性为：{}", address);
         return Result.succeed(address);
     }
 
-    @GetMapping("/successResp2")
     public Result<String> successResp2(@RequestParam(value = "name") String name, @RequestParam(value = "age") String age) {
         String result = "name=" + name + ", age=" + age;
         log.info("result:{}", result);
         return Result.succeed(result, "success message");
     }
 
-    @GetMapping("/errorResp1")
     public Result<String> errorResp1(@RequestParam(value = "name") String name) {
         log.info("name:{}", name);
-        return Result.failed(Code.PARAMETER_ERROR, "error message");
+        return Result.failed(SystemCode.BAD_REQUEST);
     }
 
-    @GetMapping("/errorResp2")
     public Result<String> errorResp2() {
         return Result.buildResult("error data", 405, "error message");
     }

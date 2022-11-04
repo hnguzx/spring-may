@@ -5,6 +5,8 @@ import org.springframework.transaction.annotation.Transactional;
 import pers.guzx.demo.entity.vo.CountryVO;
 import pers.guzx.demo.entity.vo.PageResult;
 
+import java.beans.IntrospectionException;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -60,5 +62,11 @@ public interface CountryService {
      */
     @Cacheable(cacheNames = "country", key = "#root.caches[0].name")
     PageResult<CountryVO> getCountryByCountry(CountryVO country, Long current, Long size);
+
+    public List<CountryVO> getCountryByCodeOrNameOrEnglishName(String code, String name, String englishName);
+
+    public List<CountryVO> getCountryByCodeAndNameAndEnglishName(String code,String name,String englishName);
+
+    public Boolean selectAndSaveBatch(String code, String name, String englishName) throws IntrospectionException;
 
 }

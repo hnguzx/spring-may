@@ -5,6 +5,7 @@
     <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
     <!-- 项目名称 -->
     <property name="PROJECT_NAME" value="demo-server" />
+    <property name="LOG_PATTERN" value="%date{HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M-%L - %msg%n"/>
     <contextName>${PROJECT_NAME}</contextName>
 
 
@@ -24,7 +25,7 @@
         <!--<withJansi>true</withJansi>-->
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
-            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <pattern>${LOG_PATTERN}</pattern>
             <charset>${CONSOLE_LOG_CHARSET}</charset>
         </encoder>
         <target>System.out</target>
@@ -89,6 +90,8 @@
     <springProfile name="dev">
         <root level="INFO">
             <appender-ref ref="CONSOLE" />
+            <appender-ref ref="SYSTEM_FILE_ERROR" />
+            <appender-ref ref="SYSTEM_FILE_INFO" />
         </root>
     </springProfile>
 

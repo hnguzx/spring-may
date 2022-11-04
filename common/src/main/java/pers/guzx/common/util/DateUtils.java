@@ -15,4 +15,9 @@ public class DateUtils {
         SimpleDateFormat sdf = new SimpleDateFormat(format);
         return sdf.format(date);
     }
+
+    public static String formatDate(Date date, String format) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+        return simpleDateFormat.format(date);
+    }
 }

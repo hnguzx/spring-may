@@ -3,23 +3,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.7</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <groupId>pers.guzx</groupId>
+        <artifactId>pom-root</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../pom-root/pom.xml</relativePath>
     </parent>
-    <groupId>pers.guzx</groupId>
     <artifactId>demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>demo</name>
     <description>Demo</description>
     <properties>
-        <java.version>11</java.version>
-        <spring-boot-maven-plugin.version>2.6.7</spring-boot-maven-plugin.version>
-        <spring-boot-dependencies.version>2.6.7</spring-boot-dependencies.version>
-        <spring-cloud-dependencies.version>2021.0.2</spring-cloud-dependencies.version>
-        <mybatis.version>2.2.2</mybatis.version>
-        <apollo.version>2.0.0</apollo.version>
+        <apollo.version>1.9.2</apollo.version>
     </properties>
     <dependencies>
         <dependency>
@@ -36,37 +30,22 @@
         <dependency>
             <groupId>pers.guzx</groupId>
             <artifactId>common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${spring-may.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>pers.guzx</groupId>
+            <artifactId>api</artifactId>
+            <version>${spring-may.version}</version>
         </dependency>
         <!--        mysql-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.29</version>
-        </dependency>
-        <!--        mybatis-->
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>${mybatis.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter-test</artifactId>
-            <version>${mybatis.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <!--        mybatis plus-->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.5.1</version>
         </dependency>
         <!--        druid-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
-            <version>1.2.9</version>
         </dependency>
         <!--        actuator-->
         <dependency>
@@ -94,6 +73,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
 
     </dependencies>
 
@@ -102,14 +85,14 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot-dependencies.version}</version>
+                <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud-dependencies.version}</version>
+                <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

@@ -3,11 +3,9 @@ package pers.guzx.demo.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import pers.guzx.common.exception.DAOException;
 import pers.guzx.common.exception.ServiceException;
@@ -18,10 +16,16 @@ import pers.guzx.demo.mapper.CountryMapper;
 import pers.guzx.demo.service.CountryService;
 
 import javax.annotation.Resource;
+import java.beans.IntrospectionException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+
+import static pers.guzx.common.util.BatchInsertUtils.batchInsert;
 
 /**
  * @author Guzx
@@ -131,5 +135,63 @@ public class CountryServiceImpl implements CountryService {
         } catch (Exception e) {
             throw new DAOException("get country list exception", e);
         }
+    }
+
+    @Override
+    public List<CountryVO> getCountryByCodeOrNameOrEnglishName(String code, String name, String englishName) {
+        LambdaQueryWrapper<Country> query = new LambdaQueryWrapper<>();
+        query.or().eq(Country::getCode, code);
+        query.or().eq(Country::getName, name);
+        query.or().eq(Country::getEnglishName, englishName);
+        List<CountryVO> collect = new ArrayList<>();
+        long start = System.currentTimeMillis();
+        List<Country> countries = countryMapper.selectList(query);
+        log.info("query time :{}", System.currentTimeMillis() - start);
+        if (!CollectionUtils.isEmpty(countries)) {
+            collect = countries.parallelStream()
+                    .map(Country::toCountryVO)
+                    .collect(Collectors.toList());
+        }
+        //Country country = countryMapper.selectOne(query);
+        //collect.add(country.toCountryVO());
+
+        return collect;
+    }
+
+    @Override
+    public List<CountryVO> getCountryByCodeAndNameAndEnglishName(String code, String name, String englishName) {
+
+
+        LambdaQueryWrapper<Country> query = new LambdaQueryWrapper<>();
+        query.eq(Country::getCode, code);
+        query.eq(Country::getName, name);
+        query.eq(Country::getEnglishName, englishName);
+
+        List<Country> countries = countryMapper.selectList(query);
+
+        List<CountryVO> collect = new ArrayList<>();
+        if (!CollectionUtils.isEmpty(countries)) {
+            collect = countries.parallelStream()
+                    .map(Country::toCountryVO)
+                    .collect(Collectors.toList());
+        }
+        return collect;
+    }
+
+    @Override
+    public Boolean selectAndSaveBatch(String code, String name, String englishName) {
+        List<CountryVO> countryVOS = getCountryByCodeOrNameOrEnglishName(code, name, englishName);
+        List<Country> collect = countryVOS.stream().map(CountryVO::toCountry).collect(Collectors.toList());
+        return batchInsert(collect,"country", Country.class);
+    }
+
+    public static String humpToUnderline(String str) {
+        String regex = "([A-Z])";
+        Matcher matcher = Pattern.compile(regex).matcher(str);
+        while (matcher.find()) {
+            String target = matcher.group();
+            str = str.replaceAll(target, "_"+target.toLowerCase());
+        }
+        return str;
     }
 }
