@@ -1,10 +1,10 @@
 package pers.guzx.api.demo.producer;
 
+import pers.guzx.entity.Result;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
-import pers.guzx.entity.Result;
 
-@FeignClient
+@FeignClient("producer-server")
 public interface ExceptionApi {
 
     @GetMapping("/common")

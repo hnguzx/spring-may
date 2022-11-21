@@ -1,14 +1,16 @@
 package pers.guzx.api.demo.producer;
 
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import pers.guzx.entity.Result;
 import pers.guzx.entity.demo.vo.CountryVO;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
+@FeignClient("producer-server")
 public interface FileApi {
     @PostMapping("/uploadFile/single")
     public Result<String> uploadFile(@RequestParam("uploadFile") MultipartFile uploadFile, @RequestParam("description") String description);

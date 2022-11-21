@@ -1,8 +1,8 @@
 package pers.guzx.user.authentication;
 
+import pers.guzx.user.common.LoginType;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
-import pers.guzx.user.common.LoginType;
 import pers.guzx.user.entity.Role;
 
 import java.util.Collection;

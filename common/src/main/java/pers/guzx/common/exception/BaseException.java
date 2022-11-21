@@ -1,44 +1,45 @@
 package pers.guzx.common.exception;
 
 import lombok.Data;
-import pers.guzx.common.enums.Code;
+import pers.guzx.enums.CommonEnum;
+import pers.guzx.enums.SystemCode;
 
 /**
  * @author 25446
  */
 @Data
 public class BaseException extends RuntimeException {
-    private Code errorCode;
+    private CommonEnum errorCode;
     private String errorMessage;
     private Throwable throwable;
 
     public BaseException() {
         super();
-        this.errorCode = Code.ERROR;
+        this.errorCode = SystemCode.INTERNAL_SERVER_ERROR;
         this.errorMessage = "系统异常";
     }
 
     public BaseException(String errorMessage) {
         super(errorMessage);
         this.errorMessage = errorMessage;
-        this.errorCode = Code.ERROR;
+        this.errorCode = SystemCode.INTERNAL_SERVER_ERROR;
     }
 
-    public BaseException(Code errorCode, String errorMessage) {
+    public BaseException(CommonEnum errorCode, String errorMessage) {
         super(errorMessage);
         this.errorMessage = errorMessage;
         this.errorCode = errorCode;
     }
 
-    public BaseException(Code code, Exception exception) {
-        super(code.getMsg(), exception);
-        this.errorMessage = code.getMsg();
+    public BaseException(CommonEnum code, Exception exception) {
+        super(code.getDetailMessage(), exception);
+        this.errorMessage = code.getDetailMessage();
         this.errorCode = code;
     }
 
     public BaseException(String errorMessage, Exception exception) {
         super(errorMessage, exception);
         this.errorMessage = errorMessage;
-        this.errorCode = Code.ERROR;
+        this.errorCode = SystemCode.INTERNAL_SERVER_ERROR;
     }
 }

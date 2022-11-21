@@ -1,12 +1,12 @@
 package pers.guzx.common.aop;
 
+import pers.guzx.common.util.DateUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
-import pers.guzx.common.util.DateUtils;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -26,7 +26,7 @@ public class RequestInfoAspect {
     public void logPointCut() {
     }
 
-    @Pointcut("execution(public pers.guzx.common.entity.dto.Result pers.guzx..controller..*Controller.*(..))")
+    @Pointcut("execution(public pers.guzx.entity.Result pers.guzx..controller..*Controller.*(..))")
     public void requestPointCut() {
     }
 

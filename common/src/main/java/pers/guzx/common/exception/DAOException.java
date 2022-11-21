@@ -1,6 +1,6 @@
 package pers.guzx.common.exception;
 
-import pers.guzx.common.enums.Code;
+import pers.guzx.enums.CommonEnum;
 
 /**
  * @author 25446
@@ -15,12 +15,12 @@ public class DAOException extends BaseException {
         super(errorMsg);
     }
 
-    public DAOException(Code code, String errorMsg) {
-        super(code, errorMsg);
+    public DAOException(CommonEnum CommonEnum, String errorMsg) {
+        super(CommonEnum, errorMsg);
     }
 
-    public DAOException(Code code, Exception exception) {
-        super(code, exception);
+    public DAOException(CommonEnum CommonEnum, Exception exception) {
+        super(CommonEnum, exception);
     }
 
     public DAOException(String errorMsg, Exception exception) {

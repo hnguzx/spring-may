@@ -1,5 +1,6 @@
 package pers.guzx.entity.demo.vo;
 
+import pers.guzx.entity.demo.po.Country;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -7,7 +8,6 @@ import lombok.NoArgsConstructor;
 import org.apache.ibatis.annotations.Insert;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.beans.BeanUtils;
-import pers.guzx.entity.demo.po.Country;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;

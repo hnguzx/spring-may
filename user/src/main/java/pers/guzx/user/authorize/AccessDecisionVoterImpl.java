@@ -1,5 +1,7 @@
 package pers.guzx.user.authorize;
 
+import pers.guzx.user.authentication.AuthenticationToken;
+import pers.guzx.user.common.Constant;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.AccessDecisionVoter;
 import org.springframework.security.access.ConfigAttribute;
@@ -8,19 +10,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
-import pers.guzx.user.authentication.AuthenticationToken;
 import pers.guzx.user.entity.Authority;
 import pers.guzx.user.entity.Role;
-import pers.guzx.user.entity.User;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static pers.guzx.user.common.Constant.COMMON_REQUEST_PREFIX;
 
 /**
  * @author 25446
@@ -43,7 +39,7 @@ public class AccessDecisionVoterImpl implements AccessDecisionVoter<FilterInvoca
         String prefix = Arrays.asList(requestURI.split("/")).get(1);
         List<Role> roles;
         // common请求全部通过
-        if (prefix.equalsIgnoreCase(COMMON_REQUEST_PREFIX)) {
+        if (prefix.equalsIgnoreCase(Constant.COMMON_REQUEST_PREFIX)) {
             return ACCESS_GRANTED;
         }
 

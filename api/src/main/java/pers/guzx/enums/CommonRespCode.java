@@ -2,7 +2,6 @@ package pers.guzx.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import pers.guzx.entity.Result;
 
 /**
  * @author Guzx

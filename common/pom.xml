@@ -10,18 +10,18 @@
     </parent>
     <groupId>pers.guzx</groupId>
     <artifactId>common</artifactId>
-    <version>${spring-may.version}</version>
+    <version>1.0.0-SNAPSHOT</version>
     <name>common</name>
     <description>公共依赖</description>
     <properties>
     </properties>
     <dependencies>
         <!--        test-->
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
+        </dependency>-->
         <!--        lombok-->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -37,6 +37,12 @@
             <groupId>com.github.ulisesbocchio</groupId>
             <artifactId>jasypt-spring-boot-starter</artifactId>
         </dependency>
+        <!--api-->
+        <dependency>
+            <groupId>pers.guzx</groupId>
+            <artifactId>api</artifactId>
+            <version>${spring-may.version}</version>
+        </dependency>
 
         <!--        zipkin-->
         <dependency>
@@ -44,10 +50,10 @@
             <artifactId>spring-cloud-starter-zipkin</artifactId>
         </dependency>
         <!--        bootstrap-->
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
-        </dependency>
+        </dependency>-->
         <!--        openfeign-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -79,18 +85,23 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-core</artifactId>
-        </dependency>
-
-        <dependency>
+        </dependency>-->
+        <!--mybatis-->
+        <!--<dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
+        </dependency>-->
+        <!--        devtools-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
         </dependency>
 
     </dependencies>

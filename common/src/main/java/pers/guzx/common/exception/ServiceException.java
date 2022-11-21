@@ -1,6 +1,6 @@
 package pers.guzx.common.exception;
 
-import pers.guzx.common.enums.Code;
+import pers.guzx.enums.CommonEnum;
 
 /**
  * @author 25446
@@ -14,12 +14,12 @@ public class ServiceException extends BaseException {
         super(errorMsg);
     }
 
-    public ServiceException(Code code, String errorMsg) {
-        super(code, errorMsg);
+    public ServiceException(CommonEnum CommonEnum, String errorMsg) {
+        super(CommonEnum, errorMsg);
     }
 
-    public ServiceException(Code code, Exception exception) {
-        super(code, exception);
+    public ServiceException(CommonEnum CommonEnum, Exception exception) {
+        super(CommonEnum, exception);
     }
 
     public ServiceException(String errorMsg, Exception exception) {

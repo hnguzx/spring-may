@@ -19,7 +19,6 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
-import static pers.guzx.common.util.DateUtils.formatDate;
 import static pers.guzx.common.util.GetBeanUtils.getSpringEntry;
 
 @Slf4j
@@ -134,7 +133,7 @@ public class BatchInsertUtils {
     public static String handlerField(Object field) {
         if (field != null) {
             if (field instanceof Date) {
-                return formatDate((Date) field, "yyyy-MM-dd hh:mm:ss");
+                return DateUtils.formatDate((Date) field, "yyyy-MM-dd hh:mm:ss");
             } else if (field instanceof Boolean || field.getClass() == Boolean.class) {
                 return field.equals(true) ? "1" : "0";
             } else {

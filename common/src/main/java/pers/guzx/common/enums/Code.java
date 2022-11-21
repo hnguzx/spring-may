@@ -2,7 +2,6 @@ package pers.guzx.common.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.springframework.http.HttpStatus;
 
 /**
  * @author Guzx

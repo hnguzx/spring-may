@@ -30,6 +30,8 @@ spring:
         locator:
           lower-case-service-id: true
           enabled: true
+#  main:
+#    web-application-type: reactive
 
 management:
   trace:

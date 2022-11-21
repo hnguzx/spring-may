@@ -1,6 +1,6 @@
 package pers.guzx.common.exception;
 
-import pers.guzx.common.enums.Code;
+import pers.guzx.enums.CommonEnum;
 
 /**
  * @author 25446
@@ -15,12 +15,12 @@ public class BusinessException extends BaseException {
         super(errorMsg);
     }
 
-    public BusinessException(Code code, String errorMsg) {
-        super(code, errorMsg);
+    public BusinessException(CommonEnum CommonEnum, String errorMsg) {
+        super(CommonEnum, errorMsg);
     }
 
-    public BusinessException(Code code, Exception exception) {
-        super(code, exception);
+    public BusinessException(CommonEnum CommonEnum, Exception exception) {
+        super(CommonEnum, exception);
     }
 
     public BusinessException(String errorMsg, Exception exception) {

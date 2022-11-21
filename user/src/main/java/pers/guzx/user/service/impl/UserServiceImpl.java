@@ -1,7 +1,6 @@
 package pers.guzx.user.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,8 +11,6 @@ import org.springframework.util.CollectionUtils;
 import pers.guzx.user.entity.Authority;
 import pers.guzx.user.entity.Role;
 import pers.guzx.user.entity.User;
-import pers.guzx.user.mapper.AuthorityMapper;
-import pers.guzx.user.mapper.RoleMapper;
 import pers.guzx.user.mapper.UserMapper;
 import pers.guzx.user.service.AuthorityService;
 import pers.guzx.user.service.RoleService;

@@ -38,6 +38,7 @@
         <!--        <module>business</module>-->
         <!--        示例-->
         <module>demo</module>
+        <module>demo/consumer</module>
     </modules>
 
 </project>

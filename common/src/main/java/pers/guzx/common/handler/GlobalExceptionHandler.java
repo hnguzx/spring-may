@@ -1,14 +1,15 @@
 package pers.guzx.common.handler;
 
+import pers.guzx.common.exception.BaseException;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.*;
-import pers.guzx.common.entity.dto.Result;
-import pers.guzx.common.enums.Code;
-import pers.guzx.common.exception.BaseException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+import pers.guzx.entity.Result;
+import pers.guzx.enums.CommonRespCode;
 
 /**
  * 统一异常处理
@@ -30,7 +31,7 @@ public class GlobalExceptionHandler {
         FieldError fieldError = exception.getFieldError();
         String field = fieldError.getField();
         String defaultMessage = fieldError.getDefaultMessage();
-        return Result.failed(Code.PARAMETER_ERROR, "field: " + field + " input error," + defaultMessage);
+        return Result.failed("field: " + field + " input error," + defaultMessage,CommonRespCode.DATA_VALIDATE);
     }
 
     /**
@@ -42,7 +43,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = BaseException.class)
     public Result<String> baseException(BaseException exception) {
         exception.printStackTrace();
-        return Result.failed(exception.getErrorCode(),exception.getErrorMessage());
+        return Result.failed(exception.getErrorMessage(),exception.getErrorCode());
     }
 
     /**

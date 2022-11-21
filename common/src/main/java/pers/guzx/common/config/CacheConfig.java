@@ -3,6 +3,7 @@ package pers.guzx.common.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurer;
 import org.springframework.cache.interceptor.KeyGenerator;
@@ -23,6 +24,7 @@ import java.util.Arrays;
  */
 @Slf4j
 @Configuration
+@ConditionalOnProperty(prefix = "spring", name = "redis")
 public class CacheConfig implements CachingConfigurer {
 
     @Autowired

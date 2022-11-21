@@ -1,6 +1,6 @@
 package pers.guzx.common.exception;
 
-import pers.guzx.common.enums.Code;
+import pers.guzx.enums.CommonEnum;
 
 /**
  * @author 25446
@@ -14,12 +14,12 @@ public class ValidException extends BaseException{
         super(errorMsg);
     }
 
-    public ValidException(Code code, String errorMsg) {
-        super(code, errorMsg);
+    public ValidException(CommonEnum CommonEnum, String errorMsg) {
+        super(CommonEnum, errorMsg);
     }
 
-    public ValidException(Code code, Exception exception) {
-        super(code, exception);
+    public ValidException(CommonEnum CommonEnum, Exception exception) {
+        super(CommonEnum, exception);
     }
 
     public ValidException(String errorMsg, Exception exception) {

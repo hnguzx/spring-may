@@ -1,6 +1,5 @@
 package pers.guzx.user.service;
 
-import pers.guzx.user.entity.Authority;
 import pers.guzx.user.entity.Role;
 
 import java.util.List;

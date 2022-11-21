@@ -1,5 +1,8 @@
 package pers.guzx.user.authentication;
 
+import pers.guzx.common.enums.Code;
+import pers.guzx.common.util.JsonUtils;
+import pers.guzx.entity.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AccountStatusException;
@@ -9,9 +12,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.session.SessionAuthenticationException;
 import org.springframework.stereotype.Component;
-import pers.guzx.common.entity.dto.Result;
-import pers.guzx.common.enums.Code;
-import pers.guzx.common.util.JsonUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
