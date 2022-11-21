@@ -1,24 +1,18 @@
 server:
-  port: 8090
+  port: 8011
 
 spring:
   application:
-    name: user-server
+    name: consumer-server
+  profiles:
+    active: dev
+  main:
+    allow-bean-definition-overriding: true
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: ${base.db.mysql.username}
     password: ${base.db.mysql.password}
     url: ${base.db.mysql.url}
-  redis:
-    lettuce:
-      pool:
-        max-active: 20
-        max-idle: 8
-        max-wait: 10000
-        min-idle: 8
-      shutdown-timeout: 100
-    cluster:
-      max-redirects: 5
 
 eureka:
   client:
@@ -28,4 +22,10 @@ eureka:
     instance-id: ${spring.application.name}
     prefer-ip-address: true
     status-page-url-path: http://${spring.cloud.client.ip-address}:${server.port}/manage/
+    # 心跳间隔
     lease-renewal-interval-in-seconds: 30
+
+jasypt:
+  encryptor:
+    bean: stringEncryptorUtil
+

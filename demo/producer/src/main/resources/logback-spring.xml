@@ -5,7 +5,6 @@
     <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
     <!-- 项目名称 -->
     <property name="PROJECT_NAME" value="producer-server" />
-<!--    <property name="LOG_PATTERN" value="%date{HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M-%L - %msg%n"/>-->
     <contextName>${PROJECT_NAME}</contextName>
 
 

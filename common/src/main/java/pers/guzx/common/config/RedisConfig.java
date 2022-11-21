@@ -12,7 +12,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * @author 25446
  */
 @Configuration
-@ConditionalOnProperty(prefix = "spring.redis",value = "host")
+@ConditionalOnProperty(prefix = "spring", name = "redis")
 public class RedisConfig {
 
     @Bean

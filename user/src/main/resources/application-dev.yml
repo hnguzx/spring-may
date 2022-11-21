@@ -1,0 +1,17 @@
+base:
+  ip: 127.0.0.1
+  db:
+    mysql:
+      url: jdbc:mysql://${base.ip}:3306/security?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+      username: ENC(root)
+      password: ENC(123456)
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8060/eureka
+
+spring:
+  redis:
+    host: 127.0.0.1
+    port: 6379

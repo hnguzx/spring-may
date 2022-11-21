@@ -3,11 +3,7 @@ server:
 spring:
   application:
     name: registry-server
-#  mvc:
-#    pathmatch:
-#      matching-strategy: ant_path_matcher
   zipkin:
-    base-url: http://127.0.0.1:9411
     discovery-client-enabled: false
   sleuth:
     sampler:
@@ -28,6 +24,4 @@ eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
-    service-url:
-      defaultZone: http://${spring.cloud.client.ip-address}:${server.port}/eureka/
 

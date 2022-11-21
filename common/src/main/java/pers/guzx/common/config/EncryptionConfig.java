@@ -13,7 +13,7 @@ import pers.guzx.common.util.StringEncryptorUtils;
  * @describe
  */
 @Configuration
-@ConditionalOnProperty(prefix = "jasypt.encryptor", value = "bean")
+@ConditionalOnProperty(prefix = "jasypt", name = "encryptor")
 public class EncryptionConfig {
 
     @Bean("jasyptStringEncryptor")

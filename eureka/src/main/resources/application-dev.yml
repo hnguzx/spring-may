@@ -1,1 +1,29 @@
 #debug: true
+
+spring:
+  zipkin:
+    base-url: http://127.0.0.1:9411
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${spring.cloud.client.ip-address}:${server.port}/eureka/
+
+management:
+  trace:
+    http:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: beans
+      path-mapping:
+        health: healthcheck
+      base-path: /manage
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+    logfile:
+      enabled: true

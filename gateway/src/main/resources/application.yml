@@ -5,8 +5,6 @@ eureka:
   client:
     healthcheck:
       enabled: true
-    service-url:
-      defaultZone: http://127.0.0.1:8060/eureka/
   instance:
     instance-id: ${spring.application.name}
     prefer-ip-address: true
@@ -18,8 +16,6 @@ spring:
     name: gateway-server
   profiles:
     active: dev
-  zipkin:
-    base-url: http://127.0.0.1:9411
     discovery-client-enabled: false
   sleuth:
     sampler:
@@ -30,25 +26,4 @@ spring:
         locator:
           lower-case-service-id: true
           enabled: true
-#  main:
-#    web-application-type: reactive
 
-management:
-  trace:
-    http:
-      enabled: true
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-        exclude: beans
-      path-mapping:
-        health: healthcheck
-      base-path: /manage
-  endpoint:
-    shutdown:
-      enabled: true
-    health:
-      show-details: always
-    logfile:
-      enabled: true
