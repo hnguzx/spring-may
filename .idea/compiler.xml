@@ -18,6 +18,7 @@
         <module name="user" />
         <module name="gateway" />
         <module name="consumer" />
+        <module name="notice" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="11" />

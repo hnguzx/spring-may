@@ -39,6 +39,7 @@
         <!--        示例-->
         <module>demo</module>
         <module>demo/consumer</module>
+        <module>notice</module>
     </modules>
 
 </project>

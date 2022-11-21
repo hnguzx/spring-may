@@ -3,10 +3,14 @@
 spring:
   zipkin:
     base-url: http://127.0.0.1:9411
+
 eureka:
   client:
     service-url:
-      defaultZone: http://${spring.cloud.client.ip-address}:${server.port}/eureka/
+      # 单机版
+       defaultZone: http://${spring.cloud.client.ip-address}:${server.port}/eureka/
+      # 集群版
+#      defaultZone: http://127.0.0.1:8060/eureka/,http://127.0.0.1:8061/eureka/,http://127.0.0.1:8062/eureka/
 
 management:
   trace:

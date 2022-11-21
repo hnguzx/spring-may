@@ -15,24 +15,13 @@
     <description>服务注册中心</description>
 
     <dependencies>
-        <!--        test-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
         <!--        eureka-server-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
         </dependency>
-        <!--        lombok-->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
         <!--        common-->
-        <dependency>
+        <!--<dependency>
             <groupId>pers.guzx</groupId>
             <artifactId>common</artifactId>
             <version>${spring-may.version}</version>
@@ -41,11 +30,12 @@
                     <groupId>pers.guzx</groupId>
                     <artifactId>api</artifactId>
                 </exclusion>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-devtools</artifactId>
-                </exclusion>
             </exclusions>
+        </dependency>-->
+        <!--        lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
     </dependencies>
 
