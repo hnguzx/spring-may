@@ -29,3 +29,52 @@ jasypt:
   encryptor:
     bean: stringEncryptorUtil
 
+feign:
+  client:
+    default-config: default
+    config:
+      default:
+        readTimeout: 6000
+        connectTimeout: 6000
+  # 开启全局服务降级
+  circuitbreaker:
+    enabled: true
+
+
+hystrix:
+  command:
+    default:
+#      降级配置
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 10000
+#      熔断配置
+      metrics:
+        rollingStats:
+          timeInMilliseconds: 10000
+      circuitBreaker:
+        enabled: true
+        # 统计时间窗内请求次数
+        requestVolumeThreshold: 20
+        # 熔断时间
+        sleepWindowInMilliseconds: 10000
+        # 错误率
+        errorThresholdPercentage: 50
+    callProducerClientFallback:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 2000
+  dashboard:
+    proxy-stream-allow-list:
+      - "localhost"
+
+
+
+

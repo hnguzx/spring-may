@@ -19,7 +19,7 @@ management:
     web:
       exposure:
         include: "*"
-        exclude: beans
+#        exclude: beans
       path-mapping:
         health: health-check
       base-path: /manage

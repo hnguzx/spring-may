@@ -63,10 +63,10 @@ public class RequestInfoAspect {
             Object result = joinPoint.proceed();
             Long endTime = System.currentTimeMillis();
             Long executeTime = endTime - startTime;
-            log.info("{}.{},requestTime：{},executeTime：{}ms,executeResult：{}", className, methodName, dateFormatString, executeTime,result.toString());
+            log.info("{}.{},requestTime：{},executeTime：{}ms,executeResult：{}", className, methodName, dateFormatString, executeTime, result.toString());
             return result;
         } catch (Throwable e) {
-            log.error("{}.{},input：{},requestTime：{},exceptionInfo：{}", className, methodName, Arrays.asList(args), dateFormatString, e.getMessage());
+            log.error("exceptionInfo：{}", e.getMessage());
             throw new RuntimeException(e);
         }
     }

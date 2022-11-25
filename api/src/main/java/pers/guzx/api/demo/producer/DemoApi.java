@@ -4,11 +4,12 @@ import pers.guzx.entity.Result;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import pers.guzx.fallback.demo.producer.DemoFallback;
 
-@FeignClient("producer-server")
+@FeignClient(value = "producer-server",fallbackFactory = DemoFallback.class)
 public interface DemoApi {
 
-    @GetMapping({"conn"})
+    @GetMapping({"/conn"})
     String testConn();
 
     @GetMapping({"/successResp1"})

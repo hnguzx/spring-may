@@ -1,53 +1,51 @@
-#base:
-#  ip: 127.0.0.1
-#  mysql:
-#    url: jdbc:mysql://${base.ip}:3306/demo?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
-#    username: ENC(guzx)
-#    password: ENC(970712)
-#
-#spring:
-#  zipkin:
-#    base-url: http://127.0.0.1:9411
-#  redis:
-#    host: 127.0.0.1
-#    port: 6379
-#
-#eureka:
-#  client:
-#    service-url:
-#      defaultZone: http://127.0.0.1:8060/eureka
-#
-#management:
-#  trace:
-#    http:
-#      enabled: true
-#  endpoints:
-#    web:
-#      exposure:
-#        include: "*"
+base:
+  ip: 127.0.0.1
+  mysql:
+    url: jdbc:mysql://${base.ip}:3306/demo?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+    username: ENC(guzx)
+    password: ENC(970712)
+
+spring:
+  zipkin:
+    base-url: http://127.0.0.1:9411
+  redis:
+    host: 127.0.0.1
+    port: 6379
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 20MB
+      max-request-size: 30MB
+      file-size-threshold: 10MB
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8060/eureka
+
+management:
+  trace:
+    http:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 #        exclude: beans
-#      path-mapping:
-#        health: health-check
-#      base-path: /manage
-#  endpoint:
-#    shutdown:
-#      enabled: true
-#    health:
-#      show-details: always
-#    logfile:
-#      enabled: true
-#
-#test:
-#  name: dev
-#
-#spring:
-#  servlet:
-#    multipart:
-#      enabled: true
-#      max-file-size: 20MB
-#      max-request-size: 30MB
-#      file-size-threshold: 10MB
-#
-#file:
-#  storage:
-#    path: D:\tempFile
+      path-mapping:
+        health: health-check
+      base-path: /manage
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+    logfile:
+      enabled: true
+
+test:
+  name: dev
+
+file:
+  storage:
+    path: D:\tempFile

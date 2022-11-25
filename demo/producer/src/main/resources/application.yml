@@ -39,8 +39,6 @@ spring:
         max-wait: 10000
         min-idle: 8
       shutdown-timeout: 100
-    cluster:
-      max-redirects: 5
 
 jasypt:
   encryptor:
@@ -60,3 +58,42 @@ eureka:
     status-page-url-path: http://${spring.cloud.client.ip-address}:${server.port}/manage/
     # 心跳间隔
     lease-renewal-interval-in-seconds: 30
+
+feign:
+  client:
+    default-config: default
+    config:
+      default:
+        readTimeout: 6000
+        connectTimeout: 6000
+  circuitbreaker:
+    enabled: true
+
+
+# 降级处理是否可以由全局异常处理与超时处理组成即可，不用circuitBreaker相关配置
+hystrix:
+  command:
+    default:
+#      降级配置
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 10000
+#      熔断配置
+      metrics:
+        rollingStats:
+#          统计时间窗口
+          timeInMilliseconds: 10000
+      circuitBreaker:
+        enabled: true
+        # 统计时间窗内请求次数
+        requestVolumeThreshold: 10
+        # 熔断时间
+        sleepWindowInMilliseconds: 10000
+        # 错误率
+        errorThresholdPercentage: 50
+
+
