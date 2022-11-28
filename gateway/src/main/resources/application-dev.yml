@@ -3,6 +3,38 @@
 spring:
   zipkin:
     base-url: http://127.0.0.1:9411
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: consumer-height
+          uri: lb://consumer-server
+          predicates:
+            - Path=/call/**
+            - Weight=group1,9
+#            - Method=GET
+#            - Cookie=name,c.biancheng.net
+#            - Header=X-Request-Id,\d+
+#            - Before=2021-10-20T11:47:34.255+08:00[Asia/Shanghai]
+#            - After=2021-10-20T11:47:34.255+08:00[Asia/Shanghai]
+#            - Between=2021-10-20T15:18:33.226+08:00[Asia/Shanghai],2021-10-20T15:23:33.226+08:00[Asia/Shanghai]
+#            - Host=**.baidu.com,**.tianmao.com
+#              Query可以写多个
+#            - Query=key, valu*
+#            - Query=key
+#            - RemoteAddr=192.168.0.1
+#            - XForwardedRemoteAddr=192.168.0.1/16
+        - id: consumer-low
+          uri: lb//consumer-server
+          predicates:
+            - Path=/call/**
+            - Weight=group1,1
+          filters:
+            -
+
+
 
 eureka:
   instance:

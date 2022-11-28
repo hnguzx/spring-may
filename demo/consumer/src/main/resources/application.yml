@@ -8,6 +8,9 @@ spring:
     active: dev
   main:
     allow-bean-definition-overriding: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: ${base.db.mysql.username}
