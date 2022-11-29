@@ -1,5 +1,7 @@
 package pers.guzx.entity.demo.vo;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import pers.guzx.entity.demo.po.Country;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,23 +26,37 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ApiModel(description = "国家基本信息")
 public class CountryVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @ApiModelProperty("国家代码")
     @Range(min = 10000, max = 99999, message = "out of maximum range")
     @NotNull(message = "can not be empty")
     private Integer code;
+
+    @ApiModelProperty("中文名称")
     @NotBlank(message = "can not be empty", groups = Insert.class)
     private String name;
+
+    @ApiModelProperty("英文名称")
     @NotBlank(message = "can not be empty", groups = Insert.class)
     private String englishName;
+
+    @ApiModelProperty("所属洲")
     @NotBlank(message = "can not be empty", groups = Insert.class)
     private String island;
+
+    @ApiModelProperty("主要语言")
     @NotBlank(message = "can not be empty", groups = Insert.class)
     private String language;
+
+    @ApiModelProperty("人口")
     @Min(value = 1)
     private Long population;
+
+    @ApiModelProperty("建立日期")
     private String grownDate;
 
     public Country toCountry() {

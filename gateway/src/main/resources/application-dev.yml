@@ -14,6 +14,11 @@ spring:
           predicates:
             - Path=/call/**
             - Weight=group1,9
+        - id: consumer-low
+          uri: lb://consumer-server
+          predicates:
+            - Path=/call/**
+            - Weight=group1,1
 #            - Method=GET
 #            - Cookie=name,c.biancheng.net
 #            - Header=X-Request-Id,\d+
@@ -27,12 +32,11 @@ spring:
 #            - RemoteAddr=192.168.0.1
 #            - XForwardedRemoteAddr=192.168.0.1/16
         - id: consumer-low
-          uri: lb//consumer-server
+          uri: lb://consumer-server
           predicates:
             - Path=/call/**
             - Weight=group1,1
-          filters:
-            -
+
 
 
 
@@ -42,9 +46,9 @@ eureka:
   client:
     service-url:
       # 单机版
-      # defaultZone: http://127.0.0.1:8060/eureka/
+       defaultZone: http://127.0.0.1:8060/eureka/
       # 集群版
-      defaultZone: http://127.0.0.1:8060/eureka/,http://127.0.0.1:8061/eureka/,http://127.0.0.1:8062/eureka/
+#      defaultZone: http://127.0.0.1:8060/eureka/,http://127.0.0.1:8061/eureka/,http://127.0.0.1:8062/eureka/
 
 management:
   trace:

@@ -18,6 +18,7 @@ spring:
     name: gateway-server
   profiles:
     active: dev
+  zipkin:
     discovery-client-enabled: false
   sleuth:
     sampler:

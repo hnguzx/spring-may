@@ -104,11 +104,6 @@
             <artifactId>spring-boot-devtools</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-boot-starter</artifactId>
-        </dependency>
-
     </dependencies>
 
     <dependencyManagement>

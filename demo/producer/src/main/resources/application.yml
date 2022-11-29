@@ -6,6 +6,9 @@ spring:
     name: producer-server
   profiles:
     active: dev
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   main:
     allow-bean-definition-overriding: true
   datasource:

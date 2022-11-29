@@ -82,6 +82,6 @@ public class DemoController implements DemoApi {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        return Result.buildResult("error data", 405, "error message");
+        return Result.buildResult("error data", SystemCode.INTERNAL_SERVER_ERROR, "error message");
     }
 }
