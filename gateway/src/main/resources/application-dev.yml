@@ -5,6 +5,10 @@ spring:
     base-url: http://127.0.0.1:9411
   cloud:
     gateway:
+      filter:
+        secure-headers:
+          xss-protection-header: 1 ; mode=block
+          strict-transport-security: max-age=631138519
       discovery:
         locator:
           enabled: true
@@ -31,12 +35,92 @@ spring:
 #            - Query=key
 #            - RemoteAddr=192.168.0.1
 #            - XForwardedRemoteAddr=192.168.0.1/16
-        - id: consumer-low
+        - id: consumer-filter
           uri: lb://consumer-server
           predicates:
             - Path=/call/**
             - Weight=group1,1
-
+          filters:
+            - AddRequestHeader=X-Request-red, value
+            - AddRequestParameter=name, value
+            - AddResponseHeader=X-Response-Red, value
+            - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+            - PrefixPath=/prefixPath
+            - PreserveHostHeader
+            - RedirectTo=302, https://acme.org
+            - RemoveRequestHeader=X-Request-Foo
+            - RemoveRequestParameter=red
+        - id: rewritepath_route
+          uri: https://example.org
+          predicates:
+            - Path=/red/**
+          filters:
+            - RewritePath=/red/?(?<segment>.*), /$\{segment}
+        - id: rewritelocationresponseheader_route
+          uri: http://example.org
+          filters:
+            - RewriteLocationResponseHeader=AS_IN_REQUEST, Location, ,
+        - id: rewriteresponseheader_route
+          uri: https://example.org
+          filters:
+            - RewriteResponseHeader=X-Response-Red, , password=[^&]+, password=***
+        - id: save_session
+          uri: https://example.org
+          predicates:
+            - Path=/foo/**
+          filters:
+            - SaveSession
+        - id: setpath_route
+          uri: https://example.org
+          predicates:
+            - Path=/red/{segment}
+          filters:
+            - SetPath=/{segment}
+        - id: setrequestheader_route
+          uri: https://example.org
+          filters:
+            - SetRequestHeader=X-Request-Red, Blue
+        - id: setresponseheader_route
+          uri: https://example.org
+          filters:
+            - SetResponseHeader=X-Response-Red, Blue
+        - id: nameRoot
+          uri: https://nameservice
+          predicates:
+            - Path=/name/**
+          filters:
+            - StripPrefix=1
+        - id: retry_test
+          uri: http://localhost:8080/flakey
+          predicates:
+            - Host=*.retry.com
+          filters:
+            - name: Retry
+              args:
+                retries: 3
+                statuses: BAD_GATEWAY
+                methods: GET,POST
+                backoff:
+                  firstBackoff: 10ms
+                  maxBackoff: 50ms
+                  factor: 2
+                  basedOnPreviousValue: false
+        - id: request_size_route
+          uri: http://localhost:8080/upload
+          predicates:
+            - Path=/upload
+          filters:
+            - name: RequestSize
+              args:
+                maxSize: 5000000
+#        - id: resource
+#          uri: http://localhost:9000
+#          predicates:
+#            - Path=/resource
+#          filters:
+#            - TokenRelay=
+      default-filters:
+        - RemoveRequestHeader=X-Request-Foo
 
 
 
