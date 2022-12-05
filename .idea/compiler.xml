@@ -7,11 +7,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="common" />
         <module name="auth" />
         <module name="eureka" />
-        <module name="producer" />
         <module name="monitor" />
+        <module name="producter" />
+        <module name="common" />
+        <module name="producer" />
         <module name="api" />
         <module name="job" />
         <module name="config" />
@@ -21,7 +22,9 @@
         <module name="notice" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="11" />
+    <bytecodeTargetLevel target="11">
+      <module name="producer" target="11" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
