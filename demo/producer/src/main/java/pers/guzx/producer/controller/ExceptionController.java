@@ -1,8 +1,6 @@
 package pers.guzx.producer.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pers.guzx.api.demo.producer.ExceptionApi;
 import pers.guzx.common.annotation.SysLog;

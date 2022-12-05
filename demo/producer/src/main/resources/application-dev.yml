@@ -49,3 +49,5 @@ test:
 file:
   storage:
     path: D:\tempFile
+
+#debug: true

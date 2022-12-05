@@ -38,4 +38,13 @@ public class PageResult<T> implements Serializable {
         pageResult.setResults(results);
         return pageResult;
     }
+
+    public static <P, V> PageResult<V> build(Long current, Long size, Long total, List<V> results) {
+        PageResult<V> pageResult = new PageResult<>();
+        pageResult.setCurrent(current);
+        pageResult.setSize(size);
+        pageResult.setTotal(total);
+        pageResult.setResults(results);
+        return pageResult;
+    }
 }

@@ -1,11 +1,11 @@
 package pers.guzx.common.util;
 
-import com.google.common.base.Strings;
+import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.springframework.util.CollectionUtils;
+import org.apache.commons.lang.StringUtils;
 
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
@@ -24,18 +24,17 @@ import static pers.guzx.common.util.GetBeanUtils.getSpringEntry;
 @Slf4j
 public class BatchInsertUtils {
 
-    private static Map<Class, Map<String, String>> entity2DB = new ConcurrentHashMap<>() {
-    };
+    private static Map<Class, Map<String, String>> entity2DB = new ConcurrentHashMap<>();
 
-    public static Boolean batchInsert(List collect, String tableName, Class entityClass) {
+    public static void batchInsert(List collect, String tableName, Class entityClass) {
         getDBAllFields(tableName, entityClass);
-        if (!CollectionUtils.isEmpty(collect)) {
+        if (CollectionUtils.isNotEmpty(collect)) {
             SqlSessionFactory sqlSessionFactory = getSpringEntry("sqlSessionFactory", SqlSessionFactory.class);
             List<String> parameters = new ArrayList<>();
             StringBuilder sql = new StringBuilder();
             sql.append("INSERT INTO ");
             sql.append(tableName);
-            sql.append("(");
+            sql.append('(');
             // sql:insert into tableName(
             List<String> fields = Arrays.stream(entityClass.getDeclaredFields())
                     .map(Field::getName)
@@ -44,13 +43,11 @@ public class BatchInsertUtils {
                 if ("serialVersionUID".equals(field) || "id".equals(field)) {
                     continue;
                 }
-                sql.append(entity2DB.get(entityClass).get(field.toLowerCase())).append(",");
+                sql.append(entity2DB.get(entityClass).get(field.toLowerCase())).append(',');
             }
             // sql:insert into tableName(field1,field2,
             sql.replace(sql.length() - 1, sql.length(), ") values(");
             // sql:insert into tableName(field1,field2) values(
-            log.info("insert sql:{}", sql);
-            int insertNumber;
             try (SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.SIMPLE, false)) {
                 collect.forEach(item -> {
                     for (String field : fields) {
@@ -81,16 +78,14 @@ public class BatchInsertUtils {
                     for (int i = 0; i < parameters.size(); i++) {
                         preparedStatement.setString(i + 1, parameters.get(i));
                     }
-                    insertNumber = preparedStatement.executeUpdate();
+                    int insertNumber = preparedStatement.executeUpdate();
                     sqlSession.commit();
                     log.info("{} batch insert success number:{}", tableName, insertNumber);
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
             }
-            return insertNumber == collect.size();
         }
-        return false;
     }
 
     /**
@@ -99,12 +94,11 @@ public class BatchInsertUtils {
      * @param entityClass
      */
     public static void getDBAllFields(String tableName, Class entityClass) {
-        if (!Strings.isNullOrEmpty(tableName)) {
-            // 已存在
+        if (StringUtils.isNotEmpty(tableName) && entityClass != null) {
             if(entity2DB.containsKey(entityClass)){
                 return;
             }
-            entity2DB.put(entityClass, new HashMap<>());
+            entity2DB.put(entityClass, new HashMap<>(16));
             String sql = "select * from " + tableName;
             SqlSessionFactory sqlSessionFactory = getSpringEntry("sqlSessionFactory", SqlSessionFactory.class);
 
@@ -115,21 +109,14 @@ public class BatchInsertUtils {
                 int columnCount = metaData.getColumnCount();
                 for (int i = 0; i < columnCount; i++) {
                     columnName = metaData.getColumnName(i + 1);
-                    entity2DB.get(entityClass).put(columnName.replaceAll("_",""), columnName);
+                    entity2DB.get(entityClass).put(columnName.replaceAll("_","").toLowerCase(), columnName);
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-            log.info("entityDB:{}", entity2DB);
         }
     }
 
-    /**
-     * entity2DB
-     *
-     * @param field
-     * @return
-     */
     public static String handlerField(Object field) {
         if (field != null) {
             if (field instanceof Date) {

@@ -56,14 +56,14 @@ spring:
             - Path=/red/**
           filters:
             - RewritePath=/red/?(?<segment>.*), /$\{segment}
-        - id: rewritelocationresponseheader_route
-          uri: http://example.org
-          filters:
-            - RewriteLocationResponseHeader=AS_IN_REQUEST, Location, ,
-        - id: rewriteresponseheader_route
-          uri: https://example.org
-          filters:
-            - RewriteResponseHeader=X-Response-Red, , password=[^&]+, password=***
+#        - id: rewritelocationresponseheader_route
+#          uri: http://example.org
+#          filters:
+#            - RewriteLocationResponseHeader=AS_IN_REQUEST, Location, ,
+#        - id: rewriteresponseheader_route
+#          uri: https://example.org
+#          filters:
+#            - RewriteResponseHeader=X-Response-Red, , password=[^&]+, password=***
         - id: save_session
           uri: https://example.org
           predicates:
@@ -76,14 +76,14 @@ spring:
             - Path=/red/{segment}
           filters:
             - SetPath=/{segment}
-        - id: setrequestheader_route
-          uri: https://example.org
-          filters:
-            - SetRequestHeader=X-Request-Red, Blue
-        - id: setresponseheader_route
-          uri: https://example.org
-          filters:
-            - SetResponseHeader=X-Response-Red, Blue
+#        - id: setrequestheader_route
+#          uri: https://example.org
+#          filters:
+#            - SetRequestHeader=X-Request-Red, Blue
+#        - id: setresponseheader_route
+#          uri: https://example.org
+#          filters:
+#            - SetResponseHeader=X-Response-Red, Blue
         - id: nameRoot
           uri: https://nameservice
           predicates:

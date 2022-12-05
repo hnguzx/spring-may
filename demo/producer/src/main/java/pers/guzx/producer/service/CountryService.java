@@ -67,6 +67,6 @@ public interface CountryService {
 
     public List<CountryVO> getCountryByCodeAndNameAndEnglishName(String code,String name,String englishName);
 
-    public Boolean selectAndSaveBatch(String code, String name, String englishName) throws IntrospectionException;
+    public void selectAndSaveBatch(String code, String name, String englishName) throws IntrospectionException;
 
 }

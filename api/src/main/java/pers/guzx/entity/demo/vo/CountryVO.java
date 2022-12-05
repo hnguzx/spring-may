@@ -7,9 +7,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.ibatis.annotations.Insert;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.beans.BeanUtils;
+import pers.guzx.validation.group.Insert;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;

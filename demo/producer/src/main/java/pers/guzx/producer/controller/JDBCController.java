@@ -88,14 +88,9 @@ public class JDBCController {
                                                @RequestParam(name = "englishName") String englishName,
                                                @RequestParam(name = "type") String type) throws IntrospectionException {
         long start = System.currentTimeMillis();
-        Boolean result = countryService.selectAndSaveBatch(code, name, englishName);
+        countryService.selectAndSaveBatch(code, name, englishName);
         long time = System.currentTimeMillis() - start;
         log.info("Insert batch time: {}", time);
-        if (result) {
             return Result.succeed();
-        }
-        return Result.failed();
     }
-
-
 }
