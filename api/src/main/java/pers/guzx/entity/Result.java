@@ -5,8 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pers.guzx.enums.CommonEnum;
-import pers.guzx.enums.SystemCode;
+import pers.guzx.common.enums.CommonEnum;
+import pers.guzx.common.enums.SystemCode;
 
 import java.io.Serializable;
 

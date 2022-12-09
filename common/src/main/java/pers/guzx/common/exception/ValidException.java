@@ -1,6 +1,7 @@
 package pers.guzx.common.exception;
 
-import pers.guzx.enums.CommonEnum;
+
+import pers.guzx.common.enums.CommonEnum;
 
 /**
  * @author 25446

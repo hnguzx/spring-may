@@ -8,9 +8,9 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pers.guzx.api.demo.producer.DemoApi;
+import pers.guzx.common.enums.SystemCode;
 import pers.guzx.producer.config.ConfigProperties;
 import pers.guzx.entity.Result;
-import pers.guzx.enums.SystemCode;
 
 import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;

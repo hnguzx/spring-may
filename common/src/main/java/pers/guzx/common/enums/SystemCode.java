@@ -1,9 +1,9 @@
-package pers.guzx.enums;
+package pers.guzx.common.enums;
 
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public enum SystemCode implements CommonEnum{
+public enum SystemCode implements CommonEnum {
 
     SUCCESS("200", "已在响应中发出"),
     CREATED("201", "新资源被创建"),

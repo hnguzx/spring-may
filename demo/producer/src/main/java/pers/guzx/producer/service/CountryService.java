@@ -49,7 +49,7 @@ public interface CountryService {
      * @param id
      * @return
      */
-    @Cacheable(cacheNames = "country", unless = "#result == null")
+    @Cacheable(cacheNames = "country1", unless = "#result == null")
     Optional<CountryVO> getCountryById(Long id);
 
     /**
@@ -60,7 +60,7 @@ public interface CountryService {
      * @param size
      * @return
      */
-    @Cacheable(cacheNames = "country", key = "#root.caches[0].name")
+    @Cacheable(cacheNames = "country2", key = "#root.caches[0].name")
     PageResult<CountryVO> getCountryByCountry(CountryVO country, Long current, Long size);
 
     public List<CountryVO> getCountryByCodeOrNameOrEnglishName(String code, String name, String englishName);

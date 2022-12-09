@@ -1,4 +1,4 @@
-package pers.guzx.enums;
+package pers.guzx.common.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

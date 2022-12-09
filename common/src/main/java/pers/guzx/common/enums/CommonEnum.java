@@ -1,4 +1,4 @@
-package pers.guzx.enums;
+package pers.guzx.common.enums;
 
 public interface CommonEnum {
 

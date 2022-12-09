@@ -25,6 +25,12 @@
             <artifactId>common</artifactId>
             <version>${spring-may.version}</version>
         </dependency>
+        <!--        api-->
+        <dependency>
+            <groupId>pers.guzx</groupId>
+            <artifactId>api</artifactId>
+            <version>${spring-may.version}</version>
+        </dependency>
         <!--web-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -1,8 +1,8 @@
 package pers.guzx.common.exception;
 
 import lombok.Data;
-import pers.guzx.enums.CommonEnum;
-import pers.guzx.enums.SystemCode;
+import pers.guzx.common.enums.CommonEnum;
+import pers.guzx.common.enums.SystemCode;
 
 /**
  * @author 25446
