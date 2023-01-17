@@ -1,6 +1,6 @@
 package pers.guzx.api.demo.producer;
 
-import pers.guzx.entity.Result;
+import pers.guzx.common.entity.Result;
 import pers.guzx.entity.demo.vo.CountryVO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;

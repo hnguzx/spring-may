@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.openfeign.FallbackFactory;
 import org.springframework.stereotype.Component;
 import pers.guzx.api.demo.consumer.CallSelfApi;
-import pers.guzx.entity.Result;
+import pers.guzx.common.entity.Result;
 
 @Slf4j
 @Component

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pers.guzx.api.demo.consumer.CallOtherApi;
 import pers.guzx.api.demo.producer.DemoApi;
 import pers.guzx.api.demo.producer.ExceptionApi;
-import pers.guzx.entity.Result;
+import pers.guzx.common.entity.Result;
 
 @DefaultProperties(defaultFallback = "globalFallbackMethod")
 @Slf4j

@@ -7,9 +7,9 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import pers.guzx.common.entity.PageResult;
 import pers.guzx.common.exception.DAOException;
 import pers.guzx.common.exception.ServiceException;
-import pers.guzx.entity.PageResult;
 import pers.guzx.entity.demo.po.Country;
 import pers.guzx.entity.demo.vo.CountryVO;
 import pers.guzx.producer.mapper.CountryMapper;
@@ -129,7 +129,7 @@ public class CountryServiceImpl implements CountryService {
                         .collect(Collectors.toList());
 
             }
-            return PageResult.build(countryPage, collect);
+            return PageResult.build(countryPage.getCurrent(), countryPage.getSize(), countryPage.getTotal(), collect);
         } catch (Exception e) {
             throw new DAOException("get country list exception", e);
         }
@@ -180,7 +180,7 @@ public class CountryServiceImpl implements CountryService {
     public void selectAndSaveBatch(String code, String name, String englishName) {
         List<CountryVO> countryVOS = getCountryByCodeOrNameOrEnglishName(code, name, englishName);
         List<Country> collect = countryVOS.stream().map(CountryVO::toCountry).collect(Collectors.toList());
-        batchInsert(collect,"country", Country.class);
+        batchInsert(collect, "country", Country.class);
     }
 
     public static String humpToUnderline(String str) {
@@ -188,7 +188,7 @@ public class CountryServiceImpl implements CountryService {
         Matcher matcher = Pattern.compile(regex).matcher(str);
         while (matcher.find()) {
             String target = matcher.group();
-            str = str.replaceAll(target, "_"+target.toLowerCase());
+            str = str.replaceAll(target, "_" + target.toLowerCase());
         }
         return str;
     }

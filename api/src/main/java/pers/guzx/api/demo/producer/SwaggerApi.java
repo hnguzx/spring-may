@@ -6,7 +6,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-import pers.guzx.entity.Result;
+import pers.guzx.common.entity.Result;
 import pers.guzx.entity.demo.vo.CountryVO;
 
 @Api(tags = "测试swagger的Controller")

@@ -1,6 +1,7 @@
 package pers.guzx.producer.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import pers.guzx.common.entity.PageResult;
 import pers.guzx.producer.mapper.CountryMapper;
 import pers.guzx.producer.service.impl.CountryServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +12,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import pers.guzx.entity.PageResult;
 import pers.guzx.entity.demo.po.Country;
 import pers.guzx.entity.demo.vo.CountryVO;
 

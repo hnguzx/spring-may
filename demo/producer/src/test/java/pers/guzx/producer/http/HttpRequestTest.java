@@ -12,8 +12,8 @@ import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RequestCallback;
+import pers.guzx.common.entity.Result;
 import pers.guzx.common.util.JsonUtils;
-import pers.guzx.entity.Result;
 import pers.guzx.entity.demo.vo.CountryVO;
 
 import java.io.File;

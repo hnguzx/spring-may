@@ -3,7 +3,7 @@ package pers.guzx.consumer.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-import pers.guzx.entity.Result;
+import pers.guzx.common.entity.Result;
 import pers.guzx.entity.demo.vo.CountryVO;
 
 @Slf4j

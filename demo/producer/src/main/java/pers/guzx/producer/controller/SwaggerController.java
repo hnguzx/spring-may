@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pers.guzx.api.demo.producer.SwaggerApi;
-import pers.guzx.entity.Result;
+import pers.guzx.common.entity.Result;
 import pers.guzx.entity.demo.vo.CountryVO;
 import pers.guzx.producer.service.CountryService;
 

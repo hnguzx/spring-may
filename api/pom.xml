@@ -16,6 +16,12 @@
     </parent>
 
     <dependencies>
+        <!--        common-->
+        <dependency>
+            <groupId>pers.guzx</groupId>
+            <artifactId>common</artifactId>
+            <version>${spring-may.version}</version>
+        </dependency>
         <!--        lombok-->
         <dependency>
             <groupId>org.projectlombok</groupId>

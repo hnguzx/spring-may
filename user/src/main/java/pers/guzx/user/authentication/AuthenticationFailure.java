@@ -1,8 +1,8 @@
 package pers.guzx.user.authentication;
 
+import pers.guzx.common.entity.Result;
 import pers.guzx.common.enums.Code;
 import pers.guzx.common.util.JsonUtils;
-import pers.guzx.entity.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AccountStatusException;

@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import pers.guzx.common.entity.Result;
 import pers.guzx.common.util.FileUtils;
-import pers.guzx.entity.Result;
 import pers.guzx.entity.demo.vo.CountryVO;
 
 import javax.servlet.ServletOutputStream;

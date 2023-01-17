@@ -1,5 +1,6 @@
 package pers.guzx.producer.controller;
 
+import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import lombok.extern.slf4j.Slf4j;
@@ -8,9 +9,9 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pers.guzx.api.demo.producer.DemoApi;
+import pers.guzx.common.entity.Result;
 import pers.guzx.common.enums.SystemCode;
 import pers.guzx.producer.config.ConfigProperties;
-import pers.guzx.entity.Result;
 
 import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
@@ -24,6 +25,7 @@ import java.util.concurrent.TimeUnit;
 @RefreshScope
 @Slf4j
 @RestController
+@DefaultProperties(defaultFallback = "globalFallback")
 public class DemoController implements DemoApi {
 
     @Value("${spring.application.name}")
@@ -35,6 +37,7 @@ public class DemoController implements DemoApi {
     @Value("${test.name}")
     private String test;
 
+    @HystrixCommand
     public String testConn() {
         int i = 1/0;
         return test;
@@ -43,6 +46,7 @@ public class DemoController implements DemoApi {
     public Result<String> successResp1() {
         String address = configProperties.getTimeout();
         try {
+            int i = 1/0;
             TimeUnit.SECONDS.sleep(6);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -63,6 +67,7 @@ public class DemoController implements DemoApi {
     public Result<String> errorResp1(@RequestParam(value = "name") String name) {
         log.info("name:{}", name);
         try {
+            int i = 1/0;
             TimeUnit.SECONDS.sleep(6);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -74,6 +79,11 @@ public class DemoController implements DemoApi {
     public Result<String> fallbackMethod(String name) {
         log.info("fallbackMethod:{}", name);
         return Result.failed();
+    }
+
+    public String globalFallback() {
+        log.info("globalFallback");
+        return "globalFallback";
     }
 
     public Result<String> errorResp2() {

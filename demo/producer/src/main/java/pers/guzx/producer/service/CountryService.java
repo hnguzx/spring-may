@@ -2,7 +2,7 @@ package pers.guzx.producer.service;
 
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.transaction.annotation.Transactional;
-import pers.guzx.entity.PageResult;
+import pers.guzx.common.entity.PageResult;
 import pers.guzx.entity.demo.vo.CountryVO;
 
 import java.beans.IntrospectionException;

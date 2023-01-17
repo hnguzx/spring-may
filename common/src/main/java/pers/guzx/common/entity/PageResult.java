@@ -1,6 +1,5 @@
-package pers.guzx.entity;
+package pers.guzx.common.entity;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -29,15 +28,6 @@ public class PageResult<T> implements Serializable {
     private Long total;
     @ApiModelProperty("具体数据")
     private transient List<T> results;
-
-    public static <P, V> PageResult<V> build(Page<P> page, List<V> results) {
-        PageResult<V> pageResult = new PageResult<>();
-        pageResult.setCurrent(page.getCurrent());
-        pageResult.setSize(page.getSize());
-        pageResult.setTotal(page.getTotal());
-        pageResult.setResults(results);
-        return pageResult;
-    }
 
     public static <P, V> PageResult<V> build(Long current, Long size, Long total, List<V> results) {
         PageResult<V> pageResult = new PageResult<>();

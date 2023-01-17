@@ -4,8 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RestController;
 import pers.guzx.api.demo.producer.ExceptionApi;
 import pers.guzx.common.annotation.SysLog;
+import pers.guzx.common.entity.Result;
 import pers.guzx.common.exception.BaseException;
-import pers.guzx.entity.Result;
 
 /**
  * @author 25446

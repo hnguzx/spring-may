@@ -1,5 +1,6 @@
 package pers.guzx.producer.controller;
 
+import pers.guzx.common.entity.PageResult;
 import pers.guzx.producer.service.CountryService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
 import pers.guzx.common.util.JsonUtils;
-import pers.guzx.entity.PageResult;
 import pers.guzx.entity.demo.vo.CountryVO;
 
 import java.nio.charset.StandardCharsets;

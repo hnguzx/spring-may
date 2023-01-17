@@ -26,7 +26,7 @@ public class RequestInfoAspect {
     public void logPointCut() {
     }
 
-    @Pointcut("execution(public pers.guzx.entity.Result pers.guzx..controller..*Controller.*(..))")
+    @Pointcut("execution(public pers.guzx.common.entity.Result pers.guzx..controller..*Controller.*(..))")
     public void requestPointCut() {
     }
 
