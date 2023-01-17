@@ -30,7 +30,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        include: '*'
 #        exclude: beans
       path-mapping:
         health: health-check
@@ -49,5 +49,3 @@ test:
 file:
   storage:
     path: D:\tempFile
-
-#debug: true

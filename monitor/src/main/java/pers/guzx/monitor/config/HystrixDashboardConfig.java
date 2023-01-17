@@ -1,4 +1,4 @@
-//package pers.guzx.producer.config;
+//package pers.guzx.monitor.config;
 //
 //import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServlet;
 //import org.springframework.boot.web.servlet.ServletRegistrationBean;

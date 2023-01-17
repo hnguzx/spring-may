@@ -37,7 +37,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        include: '*'
         exclude: beans
       path-mapping:
         health: healthcheck

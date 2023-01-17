@@ -1,44 +1,36 @@
 package pers.guzx.producer.controller;
 
-import pers.guzx.producer.service.CountryService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Insert;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pers.guzx.common.annotation.SysLog;
 import pers.guzx.entity.PageResult;
 import pers.guzx.entity.Result;
 import pers.guzx.entity.demo.vo.CountryVO;
+import pers.guzx.producer.service.CountryService;
+import pers.guzx.producer.service.impl.CountryServiceImpl;
 
+import javax.annotation.Resource;
 import javax.validation.groups.Default;
 import java.beans.IntrospectionException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * @author Guzx
- * @version 1.0
- * @date 2021/5/15 17:47
- * @describe
- */
+
 @Slf4j
 @RestController
 @RequestMapping("/jdbc")
 public class JDBCController {
 
-    @Autowired
+    @Resource(type = CountryServiceImpl.class)
     private CountryService countryService;
 
     @SysLog
     @GetMapping("/getSingle/{countryId}")
     public Result<CountryVO> getCountry(@PathVariable Long countryId) {
         Optional<CountryVO> country = countryService.getCountryById(countryId);
-        if (country.isPresent()) {
-            return Result.succeed(country.get());
-        }
-        return Result.succeed();
+        return country.map(Result::succeed).orElseGet(Result::succeed);
     }
 
     @PostMapping("/getMultiple/{current}/{size}")
@@ -73,7 +65,7 @@ public class JDBCController {
                                                   @RequestParam(name = "name") String name,
                                                   @RequestParam(name = "englishName") String englishName,
                                                   @RequestParam(name = "type") String type) {
-        List<CountryVO> countryByCodeAndNameAndEnglishName = new ArrayList<CountryVO>();
+        List<CountryVO> countryByCodeAndNameAndEnglishName;
         if ("1".equals(type)) {
             countryByCodeAndNameAndEnglishName = countryService.getCountryByCodeOrNameOrEnglishName(code, name, englishName);
         } else {
@@ -85,8 +77,7 @@ public class JDBCController {
     @GetMapping("/batchInsert")
     public Result<List<CountryVO>> batchInsert(@RequestParam(name = "code") String code,
                                                @RequestParam(name = "name") String name,
-                                               @RequestParam(name = "englishName") String englishName,
-                                               @RequestParam(name = "type") String type) throws IntrospectionException {
+                                               @RequestParam(name = "englishName") String englishName) throws IntrospectionException {
         long start = System.currentTimeMillis();
         countryService.selectAndSaveBatch(code, name, englishName);
         long time = System.currentTimeMillis() - start;

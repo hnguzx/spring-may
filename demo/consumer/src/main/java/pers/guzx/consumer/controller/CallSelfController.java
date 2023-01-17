@@ -1,10 +1,12 @@
 package pers.guzx.consumer.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
 import pers.guzx.entity.Result;
+import pers.guzx.entity.demo.vo.CountryVO;
 
+@Slf4j
 @RestController
 public class CallSelfController {
 
@@ -22,5 +24,11 @@ public class CallSelfController {
     @GetMapping("/call/params2")
     public Result<String> callParameter2(@RequestParam("key") String name, @RequestParam("value") String value) {
         return Result.succeed(name + value);
+    }
+
+    @PostMapping("/parameters")
+    public Result testParameter(@RequestBody Page page, @RequestBody CountryVO countryVO) {
+        log.info("page:{},country:{}", page, countryVO);
+        return Result.succeed();
     }
 }

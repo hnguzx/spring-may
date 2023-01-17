@@ -6,3 +6,14 @@ spring:
     name: monitor-server
   profiles:
     active: dev
+
+eureka:
+  client:
+    health-check:
+      enabled: true
+  instance:
+    instance-id: ${spring.application.name}
+    prefer-ip-address: true
+    status-page-url-path: http://${spring.cloud.client.ip-address}:${server.port}/manage/
+    # 心跳间隔
+    lease-renewal-interval-in-seconds: 30

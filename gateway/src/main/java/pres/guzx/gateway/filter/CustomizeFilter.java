@@ -22,12 +22,12 @@ public class CustomizeFilter implements Ordered, GlobalFilter {
         ServerHttpRequest request = exchange.getRequest();
         ServerHttpResponse response = exchange.getResponse();
         String first = request.getQueryParams().getFirst("name");
-        if(Objects.isNull(first)){
-            // 进行拦截
-            log.info("first params is null");
-            response.setStatusCode(HttpStatus.NOT_ACCEPTABLE);
-            return response.setComplete();
-        }
+//        if(Objects.isNull(first)){
+//            // 进行拦截
+//            log.info("first params is null");
+//            response.setStatusCode(HttpStatus.NOT_ACCEPTABLE);
+//            return response.setComplete();
+//        }
         log.info("参数是：{}",first);
         // 放行
         return chain.filter(exchange);

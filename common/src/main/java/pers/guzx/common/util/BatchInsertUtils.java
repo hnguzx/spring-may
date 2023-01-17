@@ -1,11 +1,11 @@
 package pers.guzx.common.util;
 
-import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.util.CollectionUtils;
 
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
@@ -28,7 +28,7 @@ public class BatchInsertUtils {
 
     public static void batchInsert(List collect, String tableName, Class entityClass) {
         getDBAllFields(tableName, entityClass);
-        if (CollectionUtils.isNotEmpty(collect)) {
+        if (!CollectionUtils.isEmpty(collect)) {
             SqlSessionFactory sqlSessionFactory = getSpringEntry("sqlSessionFactory", SqlSessionFactory.class);
             List<String> parameters = new ArrayList<>();
             StringBuilder sql = new StringBuilder();

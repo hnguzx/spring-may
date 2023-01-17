@@ -31,6 +31,13 @@ public class CountryVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @ApiModelProperty("分页参数，当前页码")
+    @Min(0)
+    private Integer current;
+    @ApiModelProperty("分页参数，页大小")
+    @Min(1)
+    private Integer size;
+
     @ApiModelProperty("国家代码")
     @Range(min = 10000, max = 99999, message = "out of maximum range")
     @NotNull(message = "can not be empty")

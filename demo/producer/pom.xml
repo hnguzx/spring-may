@@ -22,16 +22,11 @@
             <artifactId>common</artifactId>
             <version>${spring-may.version}</version>
         </dependency>
-        <!--api-->
+        <!--        api-->
         <dependency>
             <groupId>pers.guzx</groupId>
             <artifactId>api</artifactId>
             <version>${spring-may.version}</version>
-        </dependency>
-        <!--web-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <!--        mysql-->
         <dependency>
@@ -65,14 +60,20 @@
             <scope>test</scope>
         </dependency>
 
+        <!--web-->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
+        <!--        validator-->
         <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
+        <!--        jasypt 配置文件加密-->
+        <dependency>
+            <groupId>com.github.ulisesbocchio</groupId>
+            <artifactId>jasypt-spring-boot-starter</artifactId>
         </dependency>
 
     </dependencies>

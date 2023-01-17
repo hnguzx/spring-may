@@ -6,6 +6,10 @@ base:
       username: ENC(root)
       password: ENC(123456)
 
+#spring:
+#  profiles:
+#    include: common-sit
+
 eureka:
   client:
     service-url:
@@ -18,7 +22,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        include: '*'
 #        exclude: beans
       path-mapping:
         health: health-check
