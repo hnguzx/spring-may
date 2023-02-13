@@ -1,9 +1,10 @@
 package pers.guzx.common.exception;
 
 import lombok.Data;
+import lombok.Getter;
 import pers.guzx.common.enums.Code;
 
-@Data
+@Getter
 public class BaseException extends RuntimeException {
     private Code errorCode;
     private String errorMessage;
@@ -40,7 +41,7 @@ public class BaseException extends RuntimeException {
     }
 
     public BaseException(Code errorCode, String errorMessage, Throwable throwable) {
-        super(errorCode.getMsg(),throwable);
+        super(errorMessage,throwable);
         this.errorCode = errorCode;
         this.throwable = throwable;
     }

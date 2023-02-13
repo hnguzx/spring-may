@@ -4,10 +4,14 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import pers.guzx.demo.entity.vo.CountryVO;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -18,6 +22,9 @@ import java.util.Date;
  */
 @TableName("country")
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Country {
     @TableId(value = "id",type = IdType.ASSIGN_ID)
     private Long id;
@@ -28,7 +35,7 @@ public class Country {
     private String island;
     private String language;
     private Integer population;
-    private Date grownTime;
+    private LocalDate grownTime;
 
     public CountryVO toCountryVO() {
         CountryVO countryVO = new CountryVO();

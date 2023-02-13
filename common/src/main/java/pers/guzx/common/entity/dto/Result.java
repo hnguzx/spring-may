@@ -14,7 +14,6 @@ import java.io.Serializable;
  * @describe
  */
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 public class Result<T> implements Serializable {
 

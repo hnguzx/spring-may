@@ -17,7 +17,6 @@ import java.util.List;
  * @date 2021/5/15 17:47
  * @describe
  */
-@Transactional
 @Service
 public class CountryServiceImpl implements CountryService {
 
@@ -42,10 +41,10 @@ public class CountryServiceImpl implements CountryService {
         return countryVOS;
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int addCountry(CountryVO countryVO) {
         Country country = countryVO.toCountry();
-        int insert = countryMapper.insert(country);
-        return insert;
+        return countryMapper.insert(country);
     }
 }
