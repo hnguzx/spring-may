@@ -1,0 +1,155 @@
+#debug: true
+
+spring:
+  zipkin:
+    base-url: http://127.0.0.1:9411
+  cloud:
+    gateway:
+      filter:
+        secure-headers:
+          xss-protection-header: 1 ; mode=block
+          strict-transport-security: max-age=631138519
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: consumer-height
+          uri: lb://consumer-server
+          predicates:
+            - Path=/call/**
+            - Weight=group1,9
+        - id: consumer-low
+          uri: lb://consumer-server
+          predicates:
+            - Path=/call/**
+            - Weight=group1,1
+#            - Method=GET
+#            - Cookie=name,c.biancheng.net
+#            - Header=X-Request-Id,\d+
+#            - Before=2021-10-20T11:47:34.255+08:00[Asia/Shanghai]
+#            - After=2021-10-20T11:47:34.255+08:00[Asia/Shanghai]
+#            - Between=2021-10-20T15:18:33.226+08:00[Asia/Shanghai],2021-10-20T15:23:33.226+08:00[Asia/Shanghai]
+#            - Host=**.baidu.com,**.tianmao.com
+#              Query可以写多个
+#            - Query=key, valu*
+#            - Query=key
+#            - RemoteAddr=192.168.0.1
+#            - XForwardedRemoteAddr=192.168.0.1/16
+        - id: consumer-filter
+          uri: lb://consumer-server
+          predicates:
+            - Path=/call/**
+            - Weight=group1,1
+          filters:
+            - AddRequestHeader=X-Request-red, value
+            - AddRequestParameter=name, value
+            - AddResponseHeader=X-Response-Red, value
+            - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+            - PrefixPath=/prefixPath
+            - PreserveHostHeader
+            - RedirectTo=302, https://acme.org
+            - RemoveRequestHeader=X-Request-Foo
+            - RemoveRequestParameter=red
+        - id: rewritepath_route
+          uri: https://example.org
+          predicates:
+            - Path=/red/**
+          filters:
+            - RewritePath=/red/?(?<segment>.*), /$\{segment}
+#        - id: rewritelocationresponseheader_route
+#          uri: http://example.org
+#          filters:
+#            - RewriteLocationResponseHeader=AS_IN_REQUEST, Location, ,
+#        - id: rewriteresponseheader_route
+#          uri: https://example.org
+#          filters:
+#            - RewriteResponseHeader=X-Response-Red, , password=[^&]+, password=***
+        - id: save_session
+          uri: https://example.org
+          predicates:
+            - Path=/foo/**
+          filters:
+            - SaveSession
+        - id: setpath_route
+          uri: https://example.org
+          predicates:
+            - Path=/red/{segment}
+          filters:
+            - SetPath=/{segment}
+#        - id: setrequestheader_route
+#          uri: https://example.org
+#          filters:
+#            - SetRequestHeader=X-Request-Red, Blue
+#        - id: setresponseheader_route
+#          uri: https://example.org
+#          filters:
+#            - SetResponseHeader=X-Response-Red, Blue
+        - id: nameRoot
+          uri: https://nameservice
+          predicates:
+            - Path=/name/**
+          filters:
+            - StripPrefix=1
+        - id: retry_test
+          uri: http://localhost:8080/flakey
+          predicates:
+            - Host=*.retry.com
+          filters:
+            - name: Retry
+              args:
+                retries: 3
+                statuses: BAD_GATEWAY
+                methods: GET,POST
+                backoff:
+                  firstBackoff: 10ms
+                  maxBackoff: 50ms
+                  factor: 2
+                  basedOnPreviousValue: false
+        - id: request_size_route
+          uri: http://localhost:8080/upload
+          predicates:
+            - Path=/upload
+          filters:
+            - name: RequestSize
+              args:
+                maxSize: 5000000
+#        - id: resource
+#          uri: http://localhost:9000
+#          predicates:
+#            - Path=/resource
+#          filters:
+#            - TokenRelay=
+      default-filters:
+        - RemoveRequestHeader=X-Request-Foo
+
+
+
+eureka:
+  instance:
+    status-page-url-path: http://127.0.0.1:8060/manage/
+  client:
+    service-url:
+      # 单机版
+       defaultZone: http://127.0.0.1:8060/eureka/
+      # 集群版
+#      defaultZone: http://127.0.0.1:8060/eureka/,http://127.0.0.1:8061/eureka/,http://127.0.0.1:8062/eureka/
+
+management:
+  trace:
+    http:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+        exclude: beans
+      path-mapping:
+        health: healthcheck
+      base-path: /manage
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+    logfile:
+      enabled: true

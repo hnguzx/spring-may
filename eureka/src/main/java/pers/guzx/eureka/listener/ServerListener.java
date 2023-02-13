@@ -15,10 +15,6 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class ServerListener {
-    @EventListener
-    public void listen(EurekaInstanceCanceledEvent event) {
-        log.info(event.getServerId() + "\t" + event.getAppName() + "服务下线");
-    }
 
     @EventListener
     public void listen(EurekaInstanceRegisteredEvent event) {
@@ -32,8 +28,13 @@ public class ServerListener {
     }
 
     @EventListener
+    public void listen(EurekaInstanceCanceledEvent event) {
+        log.info(event.getServerId() + "\t" + event.getAppName() + "服务下线");
+    }
+
+    @EventListener
     public void listen(EurekaRegistryAvailableEvent event) {
-        log.info("注册中心启动");
+        log.info("注册中心进行注册");
     }
 
     @EventListener

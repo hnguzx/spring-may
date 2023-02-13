@@ -3,11 +3,7 @@ server:
 spring:
   application:
     name: registry-server
-#  mvc:
-#    pathmatch:
-#      matching-strategy: ant_path_matcher
   zipkin:
-    base-url: http://127.0.0.1:9411
     discovery-client-enabled: false
   sleuth:
     sampler:
@@ -22,12 +18,11 @@ eureka:
     lease-expiration-duration-in-seconds: 90
   server:
     # 启用自我保护
-    enable-self-preservation: false
+    enable-self-preservation: true
     # 清理无效客户端
-    eviction-interval-timer-in-ms: 60000
+    eviction-interval-timer-in-ms: 600000
+    peer-eureka-nodes-update-interval-ms: 100000
   client:
     register-with-eureka: false
     fetch-registry: false
-    service-url:
-      defaultZone: http://${spring.cloud.client.ip-address}:${server.port}/eureka/
 

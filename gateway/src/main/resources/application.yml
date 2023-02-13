@@ -5,13 +5,13 @@ eureka:
   client:
     healthcheck:
       enabled: true
-    service-url:
-      defaultZone: http://127.0.0.1:8060/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+    registry-fetch-interval-seconds: 60
   instance:
     instance-id: ${spring.application.name}
     prefer-ip-address: true
-    status-page-url-path: http://${spring.cloud.client.ip-address}:${server.port}/manage/
-    lease-renewal-interval-in-seconds: 30
+    lease-renewal-interval-in-seconds: 60
 
 spring:
   application:
@@ -19,7 +19,6 @@ spring:
   profiles:
     active: dev
   zipkin:
-    base-url: http://127.0.0.1:9411
     discovery-client-enabled: false
   sleuth:
     sampler:
@@ -31,22 +30,3 @@ spring:
           lower-case-service-id: true
           enabled: true
 
-management:
-  trace:
-    http:
-      enabled: true
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-        exclude: beans
-      path-mapping:
-        health: healthcheck
-      base-path: /manage
-  endpoint:
-    shutdown:
-      enabled: true
-    health:
-      show-details: always
-    logfile:
-      enabled: true

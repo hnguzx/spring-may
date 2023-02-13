@@ -1,7 +1,31 @@
 package pers.guzx.common.exception;
 
-import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
-public class DAOException extends BaseException{
+import pers.guzx.common.enums.CommonEnum;
+
+/**
+ * @author 25446
+ */
+public class DAOException extends BaseException {
+
+    public DAOException() {
+        super();
+    }
+
+    public DAOException(String errorMsg) {
+        super(errorMsg);
+    }
+
+    public DAOException(CommonEnum CommonEnum, String errorMsg) {
+        super(CommonEnum, errorMsg);
+    }
+
+    public DAOException(CommonEnum CommonEnum, Exception exception) {
+        super(CommonEnum, exception);
+    }
+
+    public DAOException(String errorMsg, Exception exception) {
+        super(errorMsg, exception);
+    }
+
 }

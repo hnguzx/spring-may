@@ -1,0 +1,31 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8060/eureka
+
+management:
+  trace:
+    http:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+      #        exclude: beans
+      path-mapping:
+        health: health-check
+      base-path: /manage
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+    logfile:
+      enabled: true
+hystrix:
+  dashboard:
+    proxy-stream-allow-list: localhost
+turbine:
+  app-config: consumer-server,producer-server
+  cluster-name-expression: "'default'"
+  instanceUrlSuffix: "/manage/hystrix.stream"
