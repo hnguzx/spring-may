@@ -6,33 +6,17 @@
         <groupId>pers.guzx</groupId>
         <artifactId>pom-root</artifactId>
         <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../pom-root/pom.xml</relativePath>
     </parent>
-    <groupId>pers.guzx</groupId>
     <artifactId>user</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <name>user</name>
     <description>user</description>
-    <properties>
-        <java.version>11</java.version>
-        <spring-boot-maven-plugin.version>2.6.7</spring-boot-maven-plugin.version>
-        <spring-boot-dependencies.version>2.6.7</spring-boot-dependencies.version>
-        <spring-cloud-dependencies.version>2021.0.2</spring-cloud-dependencies.version>
-        <mybatis.version>2.2.2</mybatis.version>
-        <apollo.version>2.0.0</apollo.version>
-    </properties>
     <dependencies>
-        <!--        common-->
-        <dependency>
-            <groupId>pers.guzx</groupId>
-            <artifactId>common</artifactId>
-            <version>${spring-may.version}</version>
-        </dependency>
         <!--api-->
         <dependency>
             <groupId>pers.guzx</groupId>
             <artifactId>api</artifactId>
-            <version>${spring-may.version}</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <!--        security-->
         <dependency>
@@ -70,49 +54,7 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
-        <dependency>
-            <groupId>pers.guzx</groupId>
-            <artifactId>api</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
 
     </dependencies>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot-dependencies.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud-dependencies.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

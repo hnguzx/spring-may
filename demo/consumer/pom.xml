@@ -4,32 +4,22 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>pers.guzx</groupId>
-        <artifactId>pom-root</artifactId>
+        <artifactId>demo</artifactId>
         <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../../pom-root/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>consumer</artifactId>
-
-    <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <name>consumer</name>
+    <description>consumer</description>
+    <packaging>jar</packaging>
 
     <dependencies>
-        <!--        common-->
-        <dependency>
-            <groupId>pers.guzx</groupId>
-            <artifactId>common</artifactId>
-            <version>${spring-may.version}</version>
-        </dependency>
         <!--        api-->
         <dependency>
             <groupId>pers.guzx</groupId>
             <artifactId>api</artifactId>
-            <version>${spring-may.version}</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <!--web-->
         <dependency>

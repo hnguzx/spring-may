@@ -6,9 +6,7 @@
         <groupId>pers.guzx</groupId>
         <artifactId>pom-root</artifactId>
         <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../pom-root/pom.xml</relativePath>
     </parent>
-    <groupId>pers.guzx</groupId>
     <artifactId>config</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <name>config</name>

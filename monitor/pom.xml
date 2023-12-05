@@ -6,16 +6,11 @@
         <groupId>pers.guzx</groupId>
         <artifactId>pom-root</artifactId>
         <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../pom-root/pom.xml</relativePath>
     </parent>
-    <groupId>pers.guzx</groupId>
     <artifactId>monitor</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>monitor</name>
     <description>监控</description>
-    <properties>
-        <java.version>11</java.version>
-    </properties>
     <dependencies>
         <!--        test-->
         <dependency>

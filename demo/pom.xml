@@ -6,12 +6,14 @@
         <groupId>pers.guzx</groupId>
         <artifactId>pom-root</artifactId>
         <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../pom-root/pom.xml</relativePath>
     </parent>
     <artifactId>demo</artifactId>
+    <name>demo</name>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
         <module>producer</module>
+        <module>consumer</module>
     </modules>
 
 </project>

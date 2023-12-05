@@ -12,8 +12,8 @@ import java.util.Map;
  */
 public enum Language {
     ENGLISH_US("en_US", "", null),
-    CHINESE_SIMPLIFIED("zh_CN", "", null),
-    CHINESE_TRADITIONAL_HONGKONG("zh_HK", "", null);
+    CHINESE_CN("zh_CN", "", null),
+    CHINESE_TRADITIONAL_HK("zh_HK", "", null);
 
     String value;
     String description;
