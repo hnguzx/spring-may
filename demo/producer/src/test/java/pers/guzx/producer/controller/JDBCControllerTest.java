@@ -55,7 +55,7 @@ class JDBCControllerTest {
         // Setup
         // Configure CountryService.getCountryById(...).
         final CountryVO countryVO1 = new CountryVO();
-        countryVO1.setCode(0);
+        countryVO1.setCode("0");
         countryVO1.setName("name");
         countryVO1.setEnglishName("englishName");
         countryVO1.setIsland("island");
@@ -102,7 +102,7 @@ class JDBCControllerTest {
         // Setup
         // Configure CountryService.getCountryByCountry(...).
         final CountryVO countryVO = new CountryVO();
-        countryVO.setCode(0);
+        countryVO.setCode("0");
         countryVO.setName("name");
         countryVO.setEnglishName("englishName");
         countryVO.setIsland("island");

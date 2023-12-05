@@ -6,6 +6,7 @@ import pers.guzx.common.entity.PageResult;
 import pers.guzx.entity.demo.vo.CountryVO;
 
 import java.beans.IntrospectionException;
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,7 +42,7 @@ public interface CountryService {
      * @return
      */
     @Transactional(rollbackFor = Exception.class)
-    boolean updateCountry(CountryVO countryVO);
+    boolean updateCountry(CountryVO countryVO) throws FileNotFoundException;
 
     /**
      * 根据主键查询单笔

@@ -145,7 +145,7 @@ public class MockitoTest {
         ArgumentCaptor<CountryVO> countryVOArgumentCaptor = ArgumentCaptor.forClass(CountryVO.class);
 
         CountryVO countryVO = CountryVO.builder()
-                .code(1997)
+                .code("1997")
                 .name("name")
                 .englishName("english name")
                 .island("land")

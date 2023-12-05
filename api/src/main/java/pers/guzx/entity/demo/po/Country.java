@@ -27,7 +27,7 @@ public class Country implements Serializable {
     @TableId(value = "id",type = IdType.ASSIGN_ID)
     private Long id;
     @TableField(value = "code")
-    private Integer code;
+    private String code;
     private String name;
     private String englishName;
     private String island;

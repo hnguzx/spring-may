@@ -23,7 +23,7 @@ class CountryMapperTest {
     void setUp() {
         country = Country.builder()
                 .id(3L)
-                .code(20002)
+                .code("20002")
                 .name("name3")
                 .englishName("englishName3")
                 .island("english")

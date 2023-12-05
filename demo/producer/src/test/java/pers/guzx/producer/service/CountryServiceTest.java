@@ -15,6 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import pers.guzx.entity.demo.po.Country;
 import pers.guzx.entity.demo.vo.CountryVO;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -45,7 +46,7 @@ class CountryServiceTest {
     void initData() {
         country = Country.builder()
                 .id(1L)
-                .code(10001)
+                .code("10001")
                 .name("Test Country")
                 .englishName("Test English Country")
                 .island("Test")
@@ -81,7 +82,7 @@ class CountryServiceTest {
 
     @DisplayName("更新country信息")
     @Test
-    void updateCountry() {
+    void updateCountry() throws FileNotFoundException {
         when(countryMapper.update(argThat(Objects::nonNull), argThat(Objects::nonNull))).thenReturn(1);
         boolean result = countryService.updateCountry(countryVO);
         assertTrue(result);

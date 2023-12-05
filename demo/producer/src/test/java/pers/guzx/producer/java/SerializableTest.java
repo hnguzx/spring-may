@@ -12,7 +12,7 @@ public class SerializableTest {
     @Test
     void testSerializable() throws IOException {
         CountryVO countryVO = new CountryVO();
-        countryVO.setCode(20002);
+        countryVO.setCode("20002");
         countryVO.setName("测试");
         countryVO.setEnglishName("English");
 

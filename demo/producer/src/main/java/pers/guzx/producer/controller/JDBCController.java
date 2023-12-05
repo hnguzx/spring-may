@@ -14,6 +14,7 @@ import pers.guzx.producer.service.impl.CountryServiceImpl;
 import javax.annotation.Resource;
 import javax.validation.groups.Default;
 import java.beans.IntrospectionException;
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -55,7 +56,7 @@ public class JDBCController {
     }
 
     @PostMapping("/updateCountry")
-    public Result<CountryVO> updateCountry(@RequestBody @Validated CountryVO countryVO) {
+    public Result<CountryVO> updateCountry(@RequestBody @Validated CountryVO countryVO) throws FileNotFoundException {
         boolean result = countryService.updateCountry(countryVO);
         return result ? Result.succeed() : Result.failed();
     }

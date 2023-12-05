@@ -39,9 +39,8 @@ public class CountryVO implements Serializable {
     private Integer size;
 
     @ApiModelProperty("国家代码")
-    @Range(min = 10000, max = 99999, message = "out of maximum range")
     @NotNull(message = "can not be empty")
-    private Integer code;
+    private String code;
 
     @ApiModelProperty("中文名称")
     @NotBlank(message = "can not be empty", groups = Insert.class)

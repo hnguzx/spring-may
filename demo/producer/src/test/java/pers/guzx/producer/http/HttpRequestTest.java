@@ -126,7 +126,7 @@ public class HttpRequestTest {
     void testLocalPut() {
         String url = "http://127.0.0.1:" + port + "/jdbc/addCountry";
         CountryVO countryVO = new CountryVO();
-        countryVO.setCode(20002);
+        countryVO.setCode("20002");
         countryVO.setName("new name");
         countryVO.setEnglishName("new english name");
         countryVO.setIsland("island");
@@ -146,7 +146,7 @@ public class HttpRequestTest {
     void testLocalDelete() {
         String url = "http://127.0.0.1:" + port + "/jdbc/deleteCountry";
         CountryVO countryVO = new CountryVO();
-        countryVO.setCode(20002);
+        countryVO.setCode("20002");
         countryVO.setName("new name");
         countryVO.setEnglishName("new english name");
         countryVO.setIsland("island");
